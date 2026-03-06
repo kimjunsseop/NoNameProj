@@ -41,6 +41,7 @@ public class PlayerMove : MonoBehaviour
     }
     void Update()
     {
+        // 마우스의 현재 위치를 받아와, Screen에다가 Ray를 쏜다
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundLayer))
         {
