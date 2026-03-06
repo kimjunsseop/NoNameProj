@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6704495945919221986}
   - component: {fileID: 2638470399249163081}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: BossSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

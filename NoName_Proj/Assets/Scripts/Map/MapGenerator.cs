@@ -1,4 +1,6 @@
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class MapGenerator : MonoBehaviour
     public MonsterSpawnerPlacer monsterPlacer;
     public ItemSpawnerPlacer itemPlacer;
     public BossSpawnPlacer bossPlacer;
+    public NavMeshSurface navMeshSurface;
 
     private IMapGenerationStrategy strategy;
 
@@ -35,5 +38,11 @@ public class MapGenerator : MonoBehaviour
         monsterPlacer.Place(map, renderer.tileSize);
         itemPlacer.Place(map, renderer.tileSize);
         bossPlacer.Place(map, renderer.tileSize);
+        BuildMesh();
+    }
+
+    void BuildMesh()
+    {
+        navMeshSurface.BuildNavMesh();
     }
 }
