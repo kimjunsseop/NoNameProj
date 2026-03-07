@@ -44,9 +44,11 @@ public class EnemyManager : MonoBehaviour
         if (spawnTimer >= spawnInterval)
         {
             spawnTimer = 0f;
+            
 
             if (enemies.Count < maxEnemyCount)
             {
+                Debug.Log("Enemy Count: " + enemies.Count);
                 SpawnRandomEnemy();
             }
         }
@@ -85,7 +87,5 @@ public class EnemyManager : MonoBehaviour
             enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
 
         Enemy enemy = spawner.Spawn(prefab, player);
-
-        RegisterEnemy(enemy);
     }
 }

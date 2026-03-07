@@ -4,6 +4,7 @@ public class EnemySpawner : MonoBehaviour
 {
     void OnEnable()
     {
+        // spawner를 manager에 등록
         EnemyManager.Instance.RegisterSpawner(this);
     }
 
@@ -11,11 +12,27 @@ public class EnemySpawner : MonoBehaviour
     {
         EnemyManager.Instance.UnregisterSpawner(this);
     }
+    
+    // public Enemy Spawn(Enemy prefab, Transform target)
+    // {
+    //     Enemy enemy = Instantiate(prefab, transform.position, Quaternion.identity);
+    //     // 각 enemy 객체 값 초기화
+    //     enemy.Initialize(target, EnemyManager.Instance);
+
+    //     return enemy;
+    // }
+
+    // 오브젝트 풀링 방식
     public Enemy Spawn(Enemy prefab, Transform target)
     {
-        Enemy enemy = Instantiate(prefab, transform.position, Quaternion.identity);
+        GameObject obj = PoolManager.Instance.Get(prefab.gameObject);
 
-        enemy.Initialize(target);
+        obj.transform.position = transform.position;
+        obj.transform.rotation = Quaternion.identity;
+
+        Enemy enemy = obj.GetComponent<Enemy>();
+
+        enemy.Initialize(target, EnemyManager.Instance);
 
         return enemy;
     }
