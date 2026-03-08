@@ -9,11 +9,11 @@ public class EffectAutoReturn : MonoBehaviour
     void Awake()
     {
         ps = GetComponent<ParticleSystem>();
-        poolable = GetComponent<Poolable>();
     }
 
     void OnEnable()
     {
+        poolable = GetComponent<Poolable>();
         ps.Play();
     }
 
@@ -21,10 +21,12 @@ public class EffectAutoReturn : MonoBehaviour
     {
         if (poolable != null)
         {
+            Debug.Log("a");
             PoolManager.Instance.Return(gameObject);
         }
         else
         {
+            Debug.Log("b");
             gameObject.SetActive(false);
         }
     }

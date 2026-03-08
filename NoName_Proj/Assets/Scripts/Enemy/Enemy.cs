@@ -21,12 +21,13 @@ public class Enemy : MonoBehaviour, IDamageable
     public EnemyMovement movement;
     public EnemyAttack attack;
     public Animator animator;
+    public EnemyUI ui;
 
     private float currentHp;
 
     public Transform target;
 
-    public event Action<Enemy> OnDeath;
+    public event Action<Enemy> OnDeath; // 매니저가 구독할거. list관리할때 지우려고
 
     private EnemyManager manager;
 
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour, IDamageable
         movement = GetComponent<EnemyMovement>();
         attack = GetComponent<EnemyAttack>();
         animator = GetComponent<Animator>();
+        ui = GetComponent<EnemyUI>();
     }
 
     public void Initialize(Transform target, EnemyManager manager)
@@ -73,6 +75,11 @@ public class Enemy : MonoBehaviour, IDamageable
         ChangeState(EnemyState.Idle);
     }
 
+    void OnDisable()
+    {
+        OnDeath = null;
+    }
+
     public void Tick()
     {
         if (state == EnemyState.Dead) return;
@@ -93,6 +100,9 @@ public class Enemy : MonoBehaviour, IDamageable
         if (state == EnemyState.Dead) return;
 
         currentHp -= damage;
+
+        ui.Show();
+        ui.UpdateHealth(currentHp, data.maxHp);
 
         if (currentHp <= 0)
         {

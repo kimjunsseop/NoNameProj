@@ -6,6 +6,7 @@ public class PlayerMove : MonoBehaviour
     private PlayerInput playerInput;
     private Rigidbody rb;
     private Animator anim;
+    public EnemyDetector detector;
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jumpPower = 3f;
     private Vector2 move;
@@ -29,6 +30,7 @@ public class PlayerMove : MonoBehaviour
         playerInput.Player.Move.canceled += OnMove;
         playerInput.Player.Jump.performed += OnJump;
         playerInput.Player.Jump.canceled += OnJump;
+        detector.OnEnemyEnter += OnEnemyEntered;
         playerInput.Enable();
     }
     void OnDisable()
@@ -37,6 +39,7 @@ public class PlayerMove : MonoBehaviour
         playerInput.Player.Move.canceled -= OnMove;
         playerInput.Player.Jump.performed -= OnJump;
         playerInput.Player.Jump.canceled -= OnJump;
+        detector.OnEnemyEnter -= OnEnemyEntered;
         playerInput.Disable();
     }
     void Update()
@@ -80,14 +83,6 @@ public class PlayerMove : MonoBehaviour
         {
             anim.SetBool("isJump", false);
         }
-        if(transform.position.z < 0)
-        {
-            anim.SetBool("isAttack", true);
-        }
-        else
-        {
-            anim.SetBool("isAttack", false);
-        }
     }
 
     void OnMove(InputAction.CallbackContext context)
@@ -118,5 +113,9 @@ public class PlayerMove : MonoBehaviour
                 rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             }
         }
+    }
+    void OnEnemyEntered(bool hasEnemy)
+    {
+        anim.SetBool("isAttack", hasEnemy);
     }
 }
