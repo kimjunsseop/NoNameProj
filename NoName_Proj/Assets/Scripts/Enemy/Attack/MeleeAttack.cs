@@ -12,6 +12,8 @@ public class MeleeAttack : EnemyAttack
 
         lastAttackTime = Time.time;
 
+        enemy.animator.SetBool("isAttack", true);
+
         if (enemy.target == null) return;
 
         IDamageable damageable =

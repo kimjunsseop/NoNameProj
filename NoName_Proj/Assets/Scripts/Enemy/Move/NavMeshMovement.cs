@@ -21,10 +21,15 @@ public class NavMeshMovement : EnemyMovement
     {
         agent.isStopped = false;
         agent.SetDestination(position);
+        enemy.animator.SetBool("isMove", true);
+        enemy.animator.SetFloat("Speed", agent.velocity.magnitude);
     }
 
     public override void Stop()
     {
         agent.isStopped = true;
+        agent.ResetPath();
+        enemy.animator.SetBool("isMove", false);
+        enemy.animator.SetFloat("Speed", 0f);
     }
 }

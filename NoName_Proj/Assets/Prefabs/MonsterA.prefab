@@ -630,6 +630,7 @@ MonoBehaviour:
   brain: {fileID: 0}
   movement: {fileID: 0}
   attack: {fileID: 0}
+  animator: {fileID: 0}
   target: {fileID: 0}
 --- !u!114 &4419023030766452634
 MonoBehaviour:
@@ -687,10 +688,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.38596106
-  m_Height: 1.468826
+  m_Radius: 0.33858597
+  m_Height: 1.5118254
   m_Direction: 1
-  m_Center: {x: 0.00000023841858, y: 0.72858083, z: 0}
+  m_Center: {x: 0.0027867556, y: 0.7500804, z: 0}
 --- !u!54 &5517498305100814989
 Rigidbody:
   m_ObjectHideFlags: 0

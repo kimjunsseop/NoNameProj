@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public EnemyBrain brain;
     public EnemyMovement movement;
     public EnemyAttack attack;
+    public Animator animator;
 
     private float currentHp;
 
@@ -34,6 +35,7 @@ public class Enemy : MonoBehaviour, IDamageable
         brain = GetComponent<EnemyBrain>();
         movement = GetComponent<EnemyMovement>();
         attack = GetComponent<EnemyAttack>();
+        animator = GetComponent<Animator>();
     }
 
     public void Initialize(Transform target, EnemyManager manager)
@@ -51,6 +53,23 @@ public class Enemy : MonoBehaviour, IDamageable
     void OnEnable()
     {
         currentHp = data.maxHp;
+
+        // var rb = GetComponent<Rigidbody>();
+        // if (rb != null)
+        // {
+        //     rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        // }
+
+        // var col = GetComponent<Collider>();
+        // if (col != null)
+        // col.enabled = true;
+
+        // var agent = GetComponent<NavMeshMovement>();
+        // if (agent != null)
+        //     agent.enabled = true;
+
+        
+
         ChangeState(EnemyState.Idle);
     }
 
@@ -85,8 +104,31 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         ChangeState(EnemyState.Dead);
 
+        movement.Stop();
+        
+        // var rb = GetComponent<Rigidbody>();
+        // if (rb != null)
+        // {
+        //     rb.constraints = RigidbodyConstraints.None;
+        // }
+       
+        // var col = GetComponent<Collider>();
+        // if (col != null)
+        //     col.enabled = false;
+
+        // var agent = GetComponent<NavMeshMovement>();
+        // if (agent != null)
+        //     agent.enabled = false;
+
+        animator.Play("Die");
+
         OnDeath?.Invoke(this);
 
+        // Animation Event에서 ReturnToPool 실행.
+    }
+
+    void ReturnToPool()
+    {
         PoolManager.Instance.Return(gameObject);
     }
 }
