@@ -543,6 +543,7 @@ GameObject:
   - component: {fileID: 4772981019857328543}
   - component: {fileID: 4896546005179449038}
   - component: {fileID: 5517498305100814989}
+  - component: {fileID: -2653042768925284102}
   m_Layer: 0
   m_Name: MonsterA
   m_TagString: Enemy
@@ -738,6 +739,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-2653042768925284102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222782392043195065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 289bede2b1133d54d9b25f68d4c837ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitFlashController
 --- !u!1 &2326565444432237450
 GameObject:
   m_ObjectHideFlags: 0

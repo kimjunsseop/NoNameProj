@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public float lastSpawnTime;
     void OnEnable()
     {
         // spawner를 manager에 등록
@@ -31,6 +32,7 @@ public class EnemySpawner : MonoBehaviour
         obj.transform.rotation = Quaternion.identity;
 
         Enemy enemy = obj.GetComponent<Enemy>();
+        lastSpawnTime = Time.time;
 
         enemy.Initialize(target, EnemyManager.Instance);
 

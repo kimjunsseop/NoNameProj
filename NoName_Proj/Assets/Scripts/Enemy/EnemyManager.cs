@@ -14,6 +14,10 @@ public class EnemyManager : MonoBehaviour
     public float spawnInterval = 3f;
     public int maxEnemyCount = 20;
 
+    [Header("Spawn Distance")]
+    public float minSpawnDistance = 10f;
+    public float maxSpawnDistance = 40f;
+
     private float spawnTimer;
 
     void Awake()
@@ -44,14 +48,75 @@ public class EnemyManager : MonoBehaviour
         if (spawnTimer >= spawnInterval)
         {
             spawnTimer = 0f;
-            
 
             if (enemies.Count < maxEnemyCount)
             {
-                Debug.Log("Enemy Count: " + enemies.Count);
-                SpawnRandomEnemy();
+                SpawnEnemy();
             }
         }
+    }
+
+    void SpawnEnemy()
+    {
+        EnemySpawner spawner = FindValidSpawner();
+
+        if (spawner == null)
+            return;
+
+        Enemy prefab = GetWeightedRandomEnemy();
+
+        if (prefab == null)
+            return;
+
+        spawner.Spawn(prefab, player);
+    }
+
+    // 특정 거리 내에 있는 spawner만 고려하자.
+    EnemySpawner FindValidSpawner()
+    {
+        List<EnemySpawner> candidates = new List<EnemySpawner>();
+
+        foreach (var spawner in spawners)
+        {
+            float dist = Vector3.Distance(player.position, spawner.transform.position);
+
+            if (dist > minSpawnDistance && dist < maxSpawnDistance)
+            {
+                candidates.Add(spawner);
+            }
+        }
+
+        if (candidates.Count == 0)
+            return null;
+
+        return candidates[Random.Range(0, candidates.Count)];
+    }
+
+
+    // Cumulative Weight Algorithm 
+    Enemy GetWeightedRandomEnemy()
+    {
+        int totalWeight = 0;
+
+        foreach (var prefab in enemyPrefabs)
+        {
+            Enemy enemy = prefab.GetComponent<Enemy>();
+            totalWeight += enemy.data.spawnWeight;
+        }
+
+        int random = Random.Range(0, totalWeight);
+
+        foreach (var prefab in enemyPrefabs)
+        {
+            Enemy enemy = prefab.GetComponent<Enemy>();
+
+            random -= enemy.data.spawnWeight;
+
+            if (random < 0)
+                return prefab;
+        }
+
+        return enemyPrefabs[0];
     }
 
     public void RegisterSpawner(EnemySpawner spawner)
@@ -74,18 +139,5 @@ public class EnemyManager : MonoBehaviour
     void OnEnemyDeath(Enemy enemy)
     {
         enemies.Remove(enemy);
-    }
-
-    public void SpawnRandomEnemy()
-    {
-        if (spawners.Count == 0) return;
-
-        EnemySpawner spawner =
-            spawners[Random.Range(0, spawners.Count)];
-
-        Enemy prefab =
-            enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
-
-        Enemy enemy = spawner.Spawn(prefab, player);
     }
 }

@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public event Action<Enemy> OnDeath; // 매니저가 구독할거. list관리할때 지우려고
 
     private EnemyManager manager;
-
+    private HitFlashController hitFlash;
     void Awake()
     {
         brain = GetComponent<EnemyBrain>();
@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour, IDamageable
         attack = GetComponent<EnemyAttack>();
         animator = GetComponent<Animator>();
         ui = GetComponent<EnemyUI>();
+        hitFlash = GetComponent<HitFlashController>();
     }
 
     public void Initialize(Transform target, EnemyManager manager)
@@ -100,9 +101,13 @@ public class Enemy : MonoBehaviour, IDamageable
         if (state == EnemyState.Dead) return;
 
         currentHp -= damage;
+        // hitFlash 발동
+        hitFlash.HitFlash();
 
         ui.Show();
         ui.UpdateHealth(currentHp, data.maxHp);
+
+        DamageTextManager.Instance.ShowDamage((int)damage, transform.position + Vector3.up * 2f);
 
         if (currentHp <= 0)
         {
