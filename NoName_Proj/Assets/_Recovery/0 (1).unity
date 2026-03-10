@@ -209,11 +209,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterSpawnerPlacer
   monsterSpawnerPrefab: {fileID: 1512342792057856790, guid: ea363ddf6c6cb884181837d7f8ed4376, type: 3}
-  totalSpawnerCount: 10
+  spawnCount: 5
   minDistance: 5
-  minBlockDistance: 1
-  blockCountX: 5
-  blockCountY: 5
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,12 +1063,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemSpawnerPlacer
   itemSpawnerPrefab: {fileID: 1512342792057856790, guid: 28178dadf4769ab409a0cb548a36e099, type: 3}
-  totalSpawnerCount: 8
+  spawnCount: 8
   minDistance: 4
-  minBlockDistance: 1
-  blockCountX: 5
-  blockCountY: 5
-  monsterSpawners: []
 --- !u!1 &1606434873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,7 +1230,7 @@ MonoBehaviour:
   spawnInterval: 3
   maxEnemyCount: 20
   minSpawnDistance: 10
-  maxSpawnDistance: 25
+  maxSpawnDistance: 40
 --- !u!1 &2120763890
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,7 +2399,6 @@ GameObject:
   - component: {fileID: 732129114}
   - component: {fileID: 732129115}
   - component: {fileID: 732129118}
-  - component: {fileID: 7673487251796320049}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3447,21 +3439,6 @@ Transform:
   - {fileID: 1033737389}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7673487251796320049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7673487251795952400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1920b95b9d2627b4f81839f5a38d98aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  level: 1
-  currentExp: 0
-  expTable: 050000000a000000
 --- !u!4 &7673487251796320050
 Transform:
   m_ObjectHideFlags: 0

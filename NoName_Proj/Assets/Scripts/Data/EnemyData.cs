@@ -10,6 +10,7 @@ public class EnemyData : ScriptableObject
     public float attackRange = 2f;
 
     public float moveSpeed = 3f;
+    public int expDrop = 5;
 
     [Header("Spawn")]
     public int spawnWeight = 10;

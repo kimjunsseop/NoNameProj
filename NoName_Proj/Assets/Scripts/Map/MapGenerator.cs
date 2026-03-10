@@ -35,10 +35,10 @@ public class MapGenerator : MonoBehaviour
         strategy.Generate(map);
 
         renderer.Render(map);
+        BuildMesh();
         monsterPlacer.Place(map, renderer.tileSize);
         itemPlacer.Place(map, renderer.tileSize);
         bossPlacer.Place(map, renderer.tileSize);
-        BuildMesh();
     }
 
     void BuildMesh()

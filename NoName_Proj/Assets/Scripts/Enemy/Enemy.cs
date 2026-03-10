@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum EnemyState
@@ -31,6 +32,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private EnemyManager manager;
     private HitFlashController hitFlash;
+    [Header("Orb")]
+    public GameObject expOrb;
     void Awake()
     {
         brain = GetComponent<EnemyBrain>();
@@ -140,6 +143,20 @@ public class Enemy : MonoBehaviour, IDamageable
         OnDeath?.Invoke(this);
 
         // Animation Event에서 ReturnToPool 실행.
+        SpawnExpOrb();
+    }
+    void SpawnExpOrb()
+    {
+        int expAmount = data.expDrop;
+
+        GameObject orbGO = PoolManager.Instance.Get(expOrb); // 풀에서 바로 가져오기
+        orbGO.transform.position = transform.position;
+        //orbGO.SetActive(true);
+        
+        var orb = orbGO.GetComponent<ExpOrb>();
+        orb.Initialize(expAmount);
+
+        // ExpOrb.cs에서 OnEnable될 때 Rigidbody를 사용해 튀어오르게 구현
     }
 
     void ReturnToPool()

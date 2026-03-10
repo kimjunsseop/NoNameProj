@@ -140,4 +140,18 @@ public class EnemyManager : MonoBehaviour
     {
         enemies.Remove(enemy);
     }
+
+    void OnDrawGizmosSelected()
+    {
+        if (player == null)
+            return;
+
+        // 최소 거리 원 (빨간색)
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(player.position, minSpawnDistance);
+
+        // 최대 거리 원 (초록색)
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(player.position, maxSpawnDistance);
+    }
 }

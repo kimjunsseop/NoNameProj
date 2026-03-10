@@ -18,7 +18,7 @@ Material:
   - _BLEND_MODE_OVERLAY
   - _EMISSION
   m_LightmapFlags: 2
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -74,14 +74,22 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
     - _BLEND_MODE: 2
     - _BUILTIN_QueueControl: -1
     - _BUILTIN_QueueOffset: 0
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 1
     - _Blend_Opacity: 0.422
     - _COORDINATES: 0
+    - _CastShadows: 1
+    - _Cull: 2
     - _Dirt: 0
     - _Dirt_Blend: 0.875
     - _Dirt_Height: 2
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
     - _Edge_Sharpness: 50
     - _Emission: 1
     - _Emission_Tiling: 1
@@ -90,8 +98,16 @@ Material:
     - _Offset: 1.39
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ReceiveShadows: 1
     - _Smoothness: 0
+    - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
+    - _Surface: 0
     - _Tiling: 1
+    - _WorkflowMode: 1
+    - _ZTest: 4
+    - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
     - _Dirt_Color: {r: 0.18117811, g: 0.10346209, b: 0.23584908, a: 0}
     - _Emission_Color: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 0}

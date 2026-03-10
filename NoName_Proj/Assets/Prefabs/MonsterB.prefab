@@ -308,6 +308,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   ui: {fileID: 0}
   target: {fileID: 0}
+  expOrb: {fileID: 7873972140378090588, guid: 11b530d4d7ad7ab4e917556a85e1b573, type: 3}
 --- !u!114 &-3205296381254177948
 MonoBehaviour:
   m_ObjectHideFlags: 0
