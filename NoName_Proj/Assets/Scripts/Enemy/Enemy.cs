@@ -122,21 +122,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         ChangeState(EnemyState.Dead);
 
-        movement.Stop();
-        
-        // var rb = GetComponent<Rigidbody>();
-        // if (rb != null)
-        // {
-        //     rb.constraints = RigidbodyConstraints.None;
-        // }
-       
-        // var col = GetComponent<Collider>();
-        // if (col != null)
-        //     col.enabled = false;
-
-        // var agent = GetComponent<NavMeshMovement>();
-        // if (agent != null)
-        //     agent.enabled = false;
+        movement.Stop();      
 
         animator.Play("Die");
 
@@ -150,7 +136,8 @@ public class Enemy : MonoBehaviour, IDamageable
         int expAmount = data.expDrop;
 
         GameObject orbGO = PoolManager.Instance.Get(expOrb); // 풀에서 바로 가져오기
-        orbGO.transform.position = transform.position;
+        Vector3 spawnPos = transform.position + Vector3.up * 2.5f; // 위에서 드랍
+        orbGO.transform.position = spawnPos;
         //orbGO.SetActive(true);
         
         var orb = orbGO.GetComponent<ExpOrb>();

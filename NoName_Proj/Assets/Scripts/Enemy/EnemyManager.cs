@@ -139,6 +139,8 @@ public class EnemyManager : MonoBehaviour
     void OnEnemyDeath(Enemy enemy)
     {
         enemies.Remove(enemy);
+        // EnemyEvent 발생
+        GameEvents.OnEnemyKilled?.Invoke();
     }
 
     void OnDrawGizmosSelected()

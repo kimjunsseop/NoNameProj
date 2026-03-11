@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   state: 0
-  data: {fileID: 11400000, guid: 9f06c567617c12046bd90f15e64b6016, type: 2}
+  data: {fileID: 11400000, guid: 1d39fe5fd498031468a59cdf2f7b1d4b, type: 2}
   brain: {fileID: 0}
   movement: {fileID: 0}
   attack: {fileID: 0}

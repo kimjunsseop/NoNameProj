@@ -15,59 +15,62 @@ public class ExpOrb : MonoBehaviour
 
     private Transform player;
     private bool isAttracting = false;
+
     private Rigidbody rb;
+    private BoxCollider bc;
+
+    Renderer renderer;
+    MaterialPropertyBlock mpb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        rb.useGravity = true;          // 튀기기 후 자연스럽게 떨어지도록
+        rb.useGravity = true;
         rb.isKinematic = false;
 
         SphereCollider sc = GetComponent<SphereCollider>();
-        sc.isTrigger = true;
+        bc = GetComponent<BoxCollider>();
+
+        bc.isTrigger = false; // 바닥 충돌
+        sc.isTrigger = true;  // 플레이어 감지
         sc.radius = attractDistance;
+        renderer = GetComponent<Renderer>();
+        mpb = new MaterialPropertyBlock();
     }
 
     private void OnEnable()
     {
-        // 초기 속도, 튀기기
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        rb.isKinematic = false;
-
-        Vector3 randomDir = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
-        rb.AddForce(Vector3.up * 5f + randomDir, ForceMode.Impulse);
 
         moveSpeed = 5f;
         isAttracting = false;
         player = null;
     }
 
-    /// <summary>
-    /// Enemy에서 드랍 시 설정
-    /// </summary>
     public void Initialize(int value)
     {
         expValue = value;
-        moveSpeed = 5f;
-        isAttracting = false;
-        player = null;
+        renderer.GetPropertyBlock(mpb);
+        mpb.SetFloat("_ExpValue", value);
+        renderer.SetPropertyBlock(mpb);
     }
 
     private void Update()
     {
         if (!isAttracting || player == null) return;
 
-        // Rigidbody.MovePosition으로 부드럽게 플레이어 추적
-        Vector3 dir = (player.position - transform.position).normalized;
+        Vector3 target = player.position + Vector3.up * 1.5f;
+        Vector3 dir = (target - transform.position).normalized;
+
         rb.MovePosition(rb.position + dir * moveSpeed * Time.deltaTime);
 
         moveSpeed += accelerate * Time.deltaTime;
 
-        // 경험치 흡수
-        if (Vector3.Distance(rb.position, player.position) < pickupDistance)
+        if (Vector3.Distance(rb.position, target) < pickupDistance)
         {
             PlayerStats stats = player.GetComponent<PlayerStats>();
+
             if (stats != null)
                 stats.AddExp(expValue);
 
@@ -82,8 +85,7 @@ public class ExpOrb : MonoBehaviour
             player = other.transform;
             isAttracting = true;
 
-            // Rigidbody 추적용
-            rb.isKinematic = false; // MovePosition과 충돌 없이 이동 가능
+            bc.isTrigger = true; // 플레이어랑 충돌 안하게
         }
     }
 
