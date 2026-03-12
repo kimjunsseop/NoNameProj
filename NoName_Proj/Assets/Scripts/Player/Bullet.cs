@@ -10,10 +10,19 @@ public class Bullet : MonoBehaviour
     public GameObject hitEffectPrefab;
     public float lifeTime = 3f;
 
+    [Header("Visual")]
+    [SerializeField] Renderer meshRenderer;
+
+    MaterialPropertyBlock mpb;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         poolable = GetComponent<Poolable>();
+        if (meshRenderer == null)
+            meshRenderer = GetComponentInChildren<Renderer>();
+
+        mpb = new MaterialPropertyBlock();
     }
 
     public void Init(float bulletSpeed, float bulletDamage)
@@ -23,8 +32,26 @@ public class Bullet : MonoBehaviour
 
         rb.linearVelocity = transform.forward * speed;
 
+        ApplyDamageVisual();
+
         CancelInvoke();
         Invoke(nameof(ReturnToPool), lifeTime);
+    }
+
+    void ApplyDamageVisual()
+    {
+        if (meshRenderer == null)
+            return;
+
+        meshRenderer.GetPropertyBlock(mpb);
+
+        // 데미지 기반 색 변화
+        float t = Mathf.InverseLerp(5f, 50f, damage);
+        Color color = Color.Lerp(Color.white, Color.red, t);
+
+        mpb.SetColor("_BaseColor", color);
+
+        meshRenderer.SetPropertyBlock(mpb);
     }
 
     void OnTriggerEnter(Collider other)

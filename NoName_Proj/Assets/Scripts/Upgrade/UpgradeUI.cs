@@ -6,6 +6,8 @@ public class UpgradeUI : MonoBehaviour
     public GameObject panel;
     public UpgradeCard[] cards;
 
+    [SerializeField] UpgradeManager manager;
+
     void OnEnable()
     {
         GameEvents.OnOpenUpgradeUI += Open;
@@ -21,7 +23,7 @@ public class UpgradeUI : MonoBehaviour
         panel.SetActive(true);
 
         List<UpgradeData> upgrades =
-            FindObjectOfType<UpgradeManager>().GetRandomUpgrades(cards.Length);
+            manager.GetRandomUpgrades(cards.Length);
 
         for (int i = 0; i < cards.Length; i++)
         {

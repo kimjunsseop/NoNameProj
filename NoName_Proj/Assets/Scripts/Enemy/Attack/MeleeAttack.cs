@@ -2,18 +2,14 @@ using UnityEngine;
 
 public class MeleeAttack : EnemyAttack
 {
-    private float lastAttackTime;
-    public float attackCooldown = 1f;
-
-    public override void Attack()
+    protected override void StartAttack()
     {
-        if (Time.time < lastAttackTime + attackCooldown)
-            return;
-
-        lastAttackTime = Time.time;
-
         enemy.animator.SetBool("isAttack", true);
+    }
 
+    // 애니메이션 이벤트에서 호출
+    public void PerformAttack()
+    {
         if (enemy.target == null) return;
 
         IDamageable damageable =

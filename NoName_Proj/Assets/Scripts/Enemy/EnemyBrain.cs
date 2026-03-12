@@ -88,6 +88,6 @@ public class EnemyBrain : MonoBehaviour
             return;
         }
 
-        enemy.attack.Attack();
+        enemy.attack.TryAttack();
     }
 }

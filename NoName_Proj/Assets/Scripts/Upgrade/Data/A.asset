@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84bc2621c547cb84c86833668e594c86, type: 3}
   m_Name: A
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
-  upgradeName: powera
-  description: slkdf
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  upgradeName: BulletUpgrade
+  description: bulletPower+1
+  icon: {fileID: 21300000, guid: 25164a774b9ace24589c09df7809ecce, type: 3}
+  costExp: 2
   effect: {fileID: 11400000, guid: 6d1fc9d9d5b5732458e2e746dabd74c5, type: 2}

@@ -9,5 +9,7 @@ public class UpgradeData : ScriptableObject
 
     public Sprite icon;
 
+    public int costExp;   // 필요 경험치
+
     public UpgradeEffect effect;
 }

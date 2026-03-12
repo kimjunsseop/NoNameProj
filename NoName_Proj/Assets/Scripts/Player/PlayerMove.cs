@@ -23,6 +23,9 @@ public class PlayerMove : MonoBehaviour
         playerInput = new PlayerInput();
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+
+        if (cam == null)
+            cam = Camera.main;
     }
     void OnEnable()
     {

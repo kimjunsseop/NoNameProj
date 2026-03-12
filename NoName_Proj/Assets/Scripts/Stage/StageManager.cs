@@ -4,7 +4,7 @@ public class StageManager : MonoBehaviour
 {
     public StageData currentStage;
 
-    int killCount;
+    int killCount = 0;
 
     void OnEnable()
     {
@@ -19,11 +19,13 @@ public class StageManager : MonoBehaviour
     void Start()
     {
         EnemyManager.Instance.maxEnemyCount = currentStage.maxEnemyCount;
+        GameEvents.OnStageProgress?.Invoke(killCount, currentStage.killTarget);
     }
 
     void OnEnemyKilled()
     {
         killCount++;
+        GameEvents.OnStageProgress?.Invoke(killCount, currentStage.killTarget); 
 
         if (killCount >= currentStage.killTarget)
         {

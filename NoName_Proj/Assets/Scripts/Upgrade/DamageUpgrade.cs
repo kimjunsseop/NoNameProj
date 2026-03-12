@@ -11,7 +11,7 @@ public class DamageUpgrade : UpgradeEffect
 
         if (gun != null)
         {
-            gun.bulletDamage += amount;
+            gun.AddDamage(amount);
         }
     }
 }

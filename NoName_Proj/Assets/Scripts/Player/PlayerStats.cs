@@ -1,24 +1,58 @@
+using System;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviour, IDamageable
 {
     public int level = 1;
     public int currentExp = 0;
-    public int[] expTable; // 레벨별 필요 경험치
+
+    public int maxHp = 100;
+    public int currentHp;
+
+    public event Action<int,int> OnHpChanged;
+    public event Action<int> OnExpChanged;
+
+    void Awake()
+    {
+        currentHp = maxHp;
+    }
 
     public void AddExp(int amount)
     {
         currentExp += amount;
-        CheckLevelUp();
+
+        OnExpChanged?.Invoke(currentExp);
     }
 
-    void CheckLevelUp()
+    public void SpendExp(int amount)
     {
-        while(level < expTable.Length && currentExp >= expTable[level - 1])
+        currentExp -= amount;
+
+        if (currentExp < 0)
+            currentExp = 0;
+
+        OnExpChanged?.Invoke(currentExp);
+    }
+
+     public void TakeDamage(float damage)
+    {
+        currentHp -= (int)damage;
+
+        if (currentHp < 0)
+            currentHp = 0;
+
+        OnHpChanged?.Invoke(currentHp, maxHp);
+
+        if (currentHp == 0)
         {
-            currentExp -= expTable[level - 1];
-            level++;
-            Debug.Log("Level Up! " + level);
+            Die();
         }
+    }
+
+    void Die()
+    {
+        Debug.Log("Player Dead");
+
+        GameEvents.OnPlayerDead?.Invoke();
     }
 }

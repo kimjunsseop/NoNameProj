@@ -9,6 +9,11 @@ public class Gun : MonoBehaviour
     public float bulletSpeed = 20f;
     public float bulletDamage = 10f;
 
+    void Start()
+    {
+        GameEvents.OnBulletDamageChanged?.Invoke(bulletDamage);
+    }
+
     public void Shoot()
     {
         SpawnMuzzleFlash();
@@ -28,5 +33,11 @@ public class Gun : MonoBehaviour
 
         effect.transform.position = muzzle.position;
         effect.transform.rotation = muzzle.rotation;
+    }
+
+    public void AddDamage(float amount)
+    {
+        bulletDamage += amount;
+        GameEvents.OnBulletDamageChanged?.Invoke(bulletDamage);
     }
 }

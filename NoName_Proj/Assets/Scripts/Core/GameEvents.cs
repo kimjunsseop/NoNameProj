@@ -11,4 +11,14 @@ public static class GameEvents
     public static Action<UpgradeData> OnUpgradeSelected;
 
     public static Action OnNextStage;
+
+    public static Action<UpgradeData> OnUpgradeSuccess;
+
+    public static Action<UpgradeData> OnUpgradeFailed;
+    
+    public static Action OnPlayerDead;
+
+    public static Action<int,int> OnStageProgress;
+
+    public static Action<float> OnBulletDamageChanged;
 }

@@ -109,7 +109,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _EmissionPower: 3
+    - _EmissionPower: 8
     - _EnvironmentReflections: 1
     - _ExpValue: 0
     - _GlossMapScale: 0
