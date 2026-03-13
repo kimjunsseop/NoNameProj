@@ -23,6 +23,7 @@ public class GameAppManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        // 씬 로드 시 발동됨.
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -40,7 +41,9 @@ public class GameAppManager : MonoBehaviour
     {
         if (scene.name.StartsWith("Stage"))
         {
+            // 플레이어 셋업하고
             SetupPlayer();
+            // 카메라 ready event 발생
             GameEvents.OnCameraReady?.Invoke(Camera.main);
         }
     }

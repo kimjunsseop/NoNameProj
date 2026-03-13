@@ -34,6 +34,26 @@ public class PlayerStats : MonoBehaviour, IDamageable
         OnExpChanged?.Invoke(currentExp);
     }
 
+    public void AddHP(int amount)
+    {
+        if(amount + currentHp > maxHp)
+        {
+            currentHp = maxHp;
+        }
+        else
+        {
+            currentHp += amount;
+        }
+
+        OnHpChanged?.Invoke(currentHp, maxHp);
+    }
+
+    public void ExpandHP(int amount)
+    {
+        maxHp += amount;
+        OnHpChanged?.Invoke(currentHp, maxHp);
+    }
+
      public void TakeDamage(float damage)
     {
         currentHp -= (int)damage;

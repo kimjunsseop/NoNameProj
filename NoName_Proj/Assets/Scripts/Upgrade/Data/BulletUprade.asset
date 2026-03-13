@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84bc2621c547cb84c86833668e594c86, type: 3}
-  m_Name: A
+  m_Name: BulletUprade
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
   upgradeName: BulletUpgrade
   description: bulletPower+1

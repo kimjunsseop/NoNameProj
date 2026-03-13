@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d0639bd9a264fa4da9d1fbde5295631, type: 3}
-  m_Name: a 1
-  m_EditorClassIdentifier: Assembly-CSharp::DamageUpgrade
-  amount: 1
+  m_Script: {fileID: 11500000, guid: f0a01a440bfa2b64bbaadcf499e4f56c, type: 3}
+  m_Name: Speed0.5
+  m_EditorClassIdentifier: Assembly-CSharp::SpeedUpgrade
+  amount: 0

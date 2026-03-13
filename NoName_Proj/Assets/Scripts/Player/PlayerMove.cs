@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody rb;
     private Animator anim;
     public EnemyDetector detector;
-    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] public float moveSpeed = 3f;
     [SerializeField] private float jumpPower = 3f;
     private Vector2 move;
     private bool isJumpButton;
@@ -59,6 +59,13 @@ public class PlayerMove : MonoBehaviour
         {
             targetLookPos = hit.point;
         }
+    }
+
+    public void AddSpeed(float amount)
+    {
+        moveSpeed += amount;
+
+        GameEvents.OnMoveSpeedChanged?.Invoke(moveSpeed);
     }
     void FixedUpdate()
     {

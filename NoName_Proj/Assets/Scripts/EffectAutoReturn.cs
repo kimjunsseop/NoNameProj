@@ -21,12 +21,12 @@ public class EffectAutoReturn : MonoBehaviour
     {
         if (poolable != null)
         {
-            Debug.Log("a");
+            //Debug.Log("a");
             PoolManager.Instance.Return(gameObject);
         }
         else
         {
-            Debug.Log("b");
+            //Debug.Log("b");
             gameObject.SetActive(false);
         }
     }

@@ -26,4 +26,6 @@ public static class GameEvents
     public static Action<Transform> OnPlayerSpawned;
 
      public static Action<Camera> OnCameraReady;
+
+     public static Action<float> OnMoveSpeedChanged;
 }

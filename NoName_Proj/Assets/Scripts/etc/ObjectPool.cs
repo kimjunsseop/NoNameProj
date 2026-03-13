@@ -20,7 +20,7 @@ public class ObjectPool
 
     void CreateNewObject()
     {
-        Debug.Log("Pool Expand : " + prefab.name);
+        //Debug.Log("Pool Expand : " + prefab.name);
         GameObject obj = GameObject.Instantiate(prefab, parent);
         obj.SetActive(false);
 
