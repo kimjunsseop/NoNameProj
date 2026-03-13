@@ -31,6 +31,20 @@ public class EnemyManager : MonoBehaviour
         UpdateSpawn();
     }
 
+    void OnEnable()
+    {
+        GameEvents.OnPlayerSpawned += SetPlayer;
+    }
+
+    void OnDisable()
+    {
+        GameEvents.OnPlayerSpawned -= SetPlayer;
+    }
+
+    void SetPlayer(Transform p)
+    {
+        player = p;
+    }
     void TickEnemies()
     {
         for (int i = 0; i < enemies.Count; i++)
@@ -41,6 +55,8 @@ public class EnemyManager : MonoBehaviour
 
     void UpdateSpawn()
     {
+        if (player == null) return;
+
         if (spawners.Count == 0) return;
 
         spawnTimer += Time.deltaTime;
@@ -58,6 +74,8 @@ public class EnemyManager : MonoBehaviour
 
     void SpawnEnemy()
     {
+        if (player == null) return;
+
         EnemySpawner spawner = FindValidSpawner();
 
         if (spawner == null)

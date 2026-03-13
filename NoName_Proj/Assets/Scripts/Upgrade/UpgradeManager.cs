@@ -10,18 +10,25 @@ public class UpgradeManager : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerStats = player.GetComponent<PlayerStats>();
+
     }
 
     void OnEnable()
     {
         GameEvents.OnUpgradeSelected += TryUpgrade;
+        GameEvents.OnPlayerSpawned += SetPlayer;
     }
 
     void OnDisable()
     {
         GameEvents.OnUpgradeSelected -= TryUpgrade;
+        GameEvents.OnPlayerSpawned -= SetPlayer;
+    }
+
+    void SetPlayer(Transform p)
+    {
+        player = p.gameObject;
+        playerStats = player.GetComponent<PlayerStats>();
     }
 
     void TryUpgrade(UpgradeData data)

@@ -34,6 +34,7 @@ public class PlayerMove : MonoBehaviour
         playerInput.Player.Jump.performed += OnJump;
         playerInput.Player.Jump.canceled += OnJump;
         detector.OnEnemyEnter += OnEnemyEntered;
+        GameEvents.OnCameraReady += SetCamera;
         playerInput.Enable();
     }
     void OnDisable()
@@ -43,7 +44,12 @@ public class PlayerMove : MonoBehaviour
         playerInput.Player.Jump.performed -= OnJump;
         playerInput.Player.Jump.canceled -= OnJump;
         detector.OnEnemyEnter -= OnEnemyEntered;
+        GameEvents.OnCameraReady -= SetCamera;
         playerInput.Disable();
+    }
+    void SetCamera(Camera c)
+    {
+        cam = c;
     }
     void Update()
     {

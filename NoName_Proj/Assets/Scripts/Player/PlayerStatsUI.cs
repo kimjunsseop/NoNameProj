@@ -9,11 +9,20 @@ public class PlayerStatsUI : MonoBehaviour
     public TextMeshProUGUI killText;
     public TextMeshProUGUI bulletDamageText;
     public StageData nowStage;
+    public Animator anim;
     PlayerStats stats;
+
+    void OnEnable()
+    {
+        GameEvents.OnPlayerSpawned += SetPlayer;
+    }
 
     void Start()
     {
-        stats = FindFirstObjectByType<PlayerStats>();
+        if(anim == null)
+        {
+            anim = GetComponentInChildren<Animator>();
+        }
 
         stats.OnHpChanged += UpdateHp;
         stats.OnExpChanged += UpdateExp;
@@ -25,9 +34,20 @@ public class PlayerStatsUI : MonoBehaviour
         UpdateStageProgress(0, nowStage.killTarget);
     }
 
+    void SetPlayer(Transform t)
+    {
+        stats = t.GetComponent<PlayerStats>();
+    }
+
+
     void UpdateHp(int hp, int max)
     {
         hpBar.fillAmount = (float)hp / max;
+        
+        if(anim != null)
+        {
+            anim.Play("HPBar");
+        }
     }
 
     void UpdateExp(int exp)

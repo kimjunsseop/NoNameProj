@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public static class GameEvents
 {
@@ -21,4 +22,8 @@ public static class GameEvents
     public static Action<int,int> OnStageProgress;
 
     public static Action<float> OnBulletDamageChanged;
+
+    public static Action<Transform> OnPlayerSpawned;
+
+     public static Action<Camera> OnCameraReady;
 }

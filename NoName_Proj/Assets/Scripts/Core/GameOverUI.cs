@@ -19,4 +19,11 @@ public class GameOverUI : MonoBehaviour
         panel.SetActive(true);
         Time.timeScale = 0;
     }
+
+    public void OnClickReturnLobby()
+    {
+        panel.SetActive(false);
+
+        GameAppManager.Instance.ReturnToLobby();
+    }
 }
