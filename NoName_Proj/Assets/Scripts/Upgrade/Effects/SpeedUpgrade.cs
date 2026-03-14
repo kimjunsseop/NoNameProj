@@ -3,11 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Upgrade/Effects/SpeedUp")]
 public class SpeedUpgrade : UpgradeEffect
 {
-    public int amount;
+    public float amount;
 
     public override void Apply(GameObject player)
     {
-         Debug.Log("SpeedUpgrade Apply : " + player.name);
+        Debug.Log("SpeedUpgrade Apply : " + player.name);
         PlayerMove move = player.GetComponent<PlayerMove>();
 
         if (move != null)

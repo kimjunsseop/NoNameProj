@@ -15,5 +15,5 @@ MonoBehaviour:
   upgradeName: SpeedUp
   description: Speed + 0.5
   icon: {fileID: 21300000, guid: e54d6efff6bf9724383e555c22e807a8, type: 3}
-  costExp: 1
+  costExp: 2
   effect: {fileID: 11400000, guid: e52975f7f0b9c8b4d8c87834c9eb420c, type: 2}

@@ -9,10 +9,12 @@ public class PlayerStatsUI : MonoBehaviour
     public TextMeshProUGUI expText;
     public TextMeshProUGUI killText;
     public TextMeshProUGUI bulletDamageText;
+    public TextMeshProUGUI bulletSpeedText;
     public StageData nowStage;
     public Animator anim;
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI moveSpeedText;
+    
 
     PlayerStats stats;
 
@@ -22,6 +24,7 @@ public class PlayerStatsUI : MonoBehaviour
         GameEvents.OnStageProgress += UpdateStageProgress;
         GameEvents.OnBulletDamageChanged += UpdateBulletDamage;
         GameEvents.OnMoveSpeedChanged += UpdateMoveSpeed;
+        GameEvents.OnBulletSpeedChanged += UpdateBulletSpeed;
     }
 
     void OnDisable()
@@ -30,6 +33,7 @@ public class PlayerStatsUI : MonoBehaviour
         GameEvents.OnStageProgress -= UpdateStageProgress;
         GameEvents.OnBulletDamageChanged -= UpdateBulletDamage;
         GameEvents.OnMoveSpeedChanged -= UpdateMoveSpeed;
+        GameEvents.OnBulletSpeedChanged -= UpdateBulletSpeed;
 
         if (stats != null)
         {
@@ -68,6 +72,7 @@ public class PlayerStatsUI : MonoBehaviour
         if (gun != null)
         {
             UpdateBulletDamage(gun.bulletDamage);
+            UpdateBulletSpeed(gun.bulletSpeed);
         }
 
         PlayerMove move = t.GetComponent<PlayerMove>();
@@ -120,5 +125,12 @@ public class PlayerStatsUI : MonoBehaviour
         if (bulletDamageText == null) return;
 
         bulletDamageText.text = "BulletPower : " + damage;
+    }
+    
+    void UpdateBulletSpeed(float speed)
+    {
+        if(bulletSpeedText == null) return;
+
+        bulletSpeedText.text = "GunSpeed : " + speed;
     }
 }

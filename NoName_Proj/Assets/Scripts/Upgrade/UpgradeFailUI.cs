@@ -19,7 +19,7 @@ public class UpgradeFailUI : MonoBehaviour
     void Open(UpgradeData data)
     {
         panel.SetActive(true);
-        text.text = "경험치가 부족합니다.";
+        text.text = "You need more Exp.";
     }
 
     public void OnClose()

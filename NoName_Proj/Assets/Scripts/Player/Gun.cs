@@ -40,4 +40,10 @@ public class Gun : MonoBehaviour
         bulletDamage += amount;
         GameEvents.OnBulletDamageChanged?.Invoke(bulletDamage);
     }
+
+    public void AddSpeed(float aomunt)
+    {
+        bulletSpeed += aomunt;
+        GameEvents.OnBulletSpeedChanged?.Invoke(bulletSpeed);
+    }
 }

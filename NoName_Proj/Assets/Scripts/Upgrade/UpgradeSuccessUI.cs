@@ -19,7 +19,7 @@ public class UpgradeSuccessUI : MonoBehaviour
     void Open(UpgradeData data)
     {
         panel.SetActive(true);
-        text.text = data.upgradeName + " 업그레이드 완료!";
+        text.text = data.upgradeName + " Upgrade Success!";
     }
 
     public void OnClose()

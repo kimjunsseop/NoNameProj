@@ -64,7 +64,7 @@ public class PlayerMove : MonoBehaviour
     public void AddSpeed(float amount)
     {
         moveSpeed += amount;
-
+        Debug.Log($"real Speed : {moveSpeed}");
         GameEvents.OnMoveSpeedChanged?.Invoke(moveSpeed);
     }
     void FixedUpdate()
