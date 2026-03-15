@@ -58,7 +58,20 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            SpawnHitEffect();
+            SpawnEnemyHitEffect();
+            IDamageable d = other.GetComponent<IDamageable>();
+
+            if (d != null)
+            {
+                d.TakeDamage(damage);
+            }
+
+            ReturnToPool();
+        }
+
+        if (other.CompareTag("Boss"))
+        {
+            //SpawnBossHitEffect(); 이거 따로 만들기
             IDamageable d = other.GetComponent<IDamageable>();
 
             if (d != null)
@@ -69,11 +82,12 @@ public class Bullet : MonoBehaviour
             ReturnToPool();
         }
     }
-    void SpawnHitEffect()
+    
+    void SpawnEnemyHitEffect()
     {
         GameObject effect = PoolManager.Instance.Get(hitEffectPrefab);
 
-        effect.transform.position = transform.position;
+        effect.transform.position = transform.position + new Vector3(0, -1f, 0);
         effect.transform.rotation = Quaternion.identity;
     }
     void ReturnToPool()

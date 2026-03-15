@@ -14,11 +14,25 @@ public class BossBrain : MonoBehaviour
     void OnEnable()
     {
         GameEvents.OnPlayerSpawned += SetTarget;
+
+        // 테스트용 반드시 지울것
+        if (GameEvents.Player != null)
+        {
+            SetTarget(GameEvents.Player);
+        }
     }
 
     void OnDisable()
     {
         GameEvents.OnPlayerSpawned -= SetTarget;
+    }
+
+    void Start()
+    {
+        if (player != null)
+        {
+            ChangeState(new BossIdleState());
+        }
     }
 
     void SetTarget(Transform player)

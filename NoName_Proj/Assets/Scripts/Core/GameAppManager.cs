@@ -62,6 +62,10 @@ public class GameAppManager : MonoBehaviour
         // 씬 넘어갈 때 위치 리셋
         Player.transform.position = spawnPosition;
 
+
+        // 테스트용 코드 꼭 지울것
+        GameEvents.Player = Player.transform;
+
         // 각 씬 시스템들이 다시 Player 참조하도록 이벤트 발생
         GameEvents.OnPlayerSpawned?.Invoke(Player.transform);
     }
@@ -76,6 +80,13 @@ public class GameAppManager : MonoBehaviour
     public void ReturnToLobby()
     {
         Time.timeScale = 1f;
+        if (Player != null)
+        {
+            Destroy(Player);
+            Player = null;
+            PlayerStats = null;
+        }
+
         SceneManager.LoadScene("Loby");
     }
 

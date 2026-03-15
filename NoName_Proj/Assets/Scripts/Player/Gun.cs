@@ -3,8 +3,10 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public Transform muzzle;
+    public Transform bulletCase;
     public GameObject bulletPrefab;
     public GameObject muzzleFlashPrefab;
+    public GameObject bulletCasePrefab;
 
     public float bulletSpeed = 20f;
     public float bulletDamage = 10f;
@@ -17,6 +19,7 @@ public class Gun : MonoBehaviour
     public void Shoot()
     {
         SpawnMuzzleFlash();
+        SpawnBulletCase();
         GameObject bulletObj = PoolManager.Instance.Get(bulletPrefab);
 
         bulletObj.transform.position = muzzle.position;
@@ -33,6 +36,14 @@ public class Gun : MonoBehaviour
 
         effect.transform.position = muzzle.position;
         effect.transform.rotation = muzzle.rotation;
+    }
+
+    void SpawnBulletCase()
+    {
+        GameObject caseObj = PoolManager.Instance.Get(bulletCasePrefab);
+
+        caseObj.transform.position = bulletCase.position;
+        caseObj.transform.rotation = bulletCase.rotation;
     }
 
     public void AddDamage(float amount)

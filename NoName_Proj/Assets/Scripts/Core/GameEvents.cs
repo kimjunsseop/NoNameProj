@@ -30,4 +30,11 @@ public static class GameEvents
     public static Action<float> OnMoveSpeedChanged;
 
     public static Action<float> OnBulletSpeedChanged;
+
+    public static Action<BossHealth> OnBossSpawned; // 보스 ui 연결용임
+
+    public static Action OnGameWin; // 보스 처리 고나련
+
+    // 테스트용 꼭 지울것
+    public static Transform Player;
 }

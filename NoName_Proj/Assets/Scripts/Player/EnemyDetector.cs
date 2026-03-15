@@ -15,6 +15,10 @@ public class EnemyDetector : MonoBehaviour
             Count++;
             enemy.OnDeath += HandleEnemyDeath;
         }
+        if (other.CompareTag("Boss"))
+        {
+            Count++;
+        }
         if(Count == 1)
         {
             OnEnemyEnter?.Invoke(true);
