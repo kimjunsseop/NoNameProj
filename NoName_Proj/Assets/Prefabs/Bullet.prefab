@@ -127,7 +127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   hitEffectPrefab: {fileID: 4324968127605537629, guid: c694cdd4158a7394bb9c62a42fc6bd6b, type: 3}
+  bossHitEffectPrefab: {fileID: 8919546882320206668, guid: a64c240e00e77fb4482ce50503d254dd, type: 3}
   lifeTime: 3
+  meshRenderer: {fileID: 0}
 --- !u!54 &193383244949479920
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -633,15 +633,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81119639}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.33, z: -10}
+  m_LocalRotation: {x: -0, y: -0.998918, z: -0, w: 0.046507552}
+  m_LocalPosition: {x: 0.3813498, y: 1.33, z: 2.5297167}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2046296000}
   - {fileID: 272293600}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -174.669, z: 0}
 --- !u!95 &81119638
 Animator:
   serializedVersion: 7
@@ -681,6 +681,7 @@ GameObject:
   - component: {fileID: 81119643}
   - component: {fileID: 81119642}
   - component: {fileID: 81119646}
+  - component: {fileID: 81119647}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -815,6 +816,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossHealth
   maxHp: 300
+--- !u!320 &81119647
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81119639}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: cdd44d5d7540af440a78a9d534ad2dfc, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 6358646907374016349, guid: cdd44d5d7540af440a78a9d534ad2dfc, type: 2}
+    value: {fileID: 81119639}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &89199796
 GameObject:
   m_ObjectHideFlags: 0

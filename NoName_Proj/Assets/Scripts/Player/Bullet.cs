@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     Rigidbody rb;
     Poolable poolable;
     public GameObject hitEffectPrefab;
+    public GameObject bossHitEffectPrefab;
     public float lifeTime = 3f;
 
     [Header("Visual")]
@@ -88,6 +89,13 @@ public class Bullet : MonoBehaviour
         GameObject effect = PoolManager.Instance.Get(hitEffectPrefab);
 
         effect.transform.position = transform.position + new Vector3(0, -1f, 0);
+        effect.transform.rotation = Quaternion.identity;
+    }
+
+    void SpawnBossHitEffect()
+    {
+        GameObject effect = PoolManager.Instance.Get(bossHitEffectPrefab);
+        effect.transform.position = transform.position + new Vector3(0, 1f, 0);
         effect.transform.rotation = Quaternion.identity;
     }
     void ReturnToPool()
