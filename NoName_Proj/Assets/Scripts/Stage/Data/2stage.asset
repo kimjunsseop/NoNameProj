@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbec805b88137154da617223026fdb85, type: 3}
   m_Name: 2stage
   m_EditorClassIdentifier: Assembly-CSharp::StageData
-  stageIndex: 1
-  killTarget: 10
+  stageIndex: 2
+  killTarget: 1
   maxEnemyCount: 70

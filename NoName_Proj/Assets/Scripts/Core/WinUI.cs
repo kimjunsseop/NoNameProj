@@ -5,12 +5,12 @@ public class WinUI : MonoBehaviour
     public GameObject panel;
     void OnEnable()
     {
-        GameEvents.OnGameWin += Show;
+        //GameEvents.OnGameWin += Show;
     }
 
     void OnDisable()
     {
-        GameEvents.OnGameWin -= Show;
+        //GameEvents.OnGameWin -= Show;
     }
 
     void Show()

@@ -41,10 +41,19 @@ public class GameAppManager : MonoBehaviour
     {
         if (scene.name.StartsWith("Stage"))
         {
-            // 플레이어 셋업하고
             SetupPlayer();
-            // 카메라 ready event 발생
+
+            if (Player != null)
+                Player.SetActive(true);
+
             GameEvents.OnCameraReady?.Invoke(Camera.main);
+        }
+
+        // 인트로 앤딩에선 플레이어 비활성화
+        else if (scene.name == "IntroScene" || scene.name == "EndingScene")
+        {
+            if (Player != null)
+                Player.SetActive(false);
         }
     }
 

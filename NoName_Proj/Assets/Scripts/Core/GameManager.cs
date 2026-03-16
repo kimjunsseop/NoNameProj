@@ -16,12 +16,14 @@ public class GameManager : MonoBehaviour
     {
         GameEvents.OnStageClear += OnStageClear;
         GameEvents.OnNextStage += LoadNextStage;
+        GameEvents.OnGameWin += OnGameWin;
     }
 
     void OnDisable()
     {
         GameEvents.OnStageClear -= OnStageClear;
         GameEvents.OnNextStage -= LoadNextStage;
+        GameEvents.OnGameWin -= OnGameWin;
     }
 
     void OnStageClear()
@@ -38,5 +40,9 @@ public class GameManager : MonoBehaviour
         int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
 
         SceneManager.LoadScene(nextScene);
+    }
+    void OnGameWin()
+    {
+        SceneManager.LoadScene("EndingScene");
     }
 }
