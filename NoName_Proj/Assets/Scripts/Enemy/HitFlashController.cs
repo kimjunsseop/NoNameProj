@@ -10,7 +10,7 @@ public class HitFlashController : MonoBehaviour
     void Awake()
     {
         renderers = GetComponentsInChildren<Renderer>();
-        mpb = new MaterialPropertyBlock(); // MPB로 컨트롤
+        mpb = new MaterialPropertyBlock(); // MPB로 컨트롤 인스턴싱 안깨질려고
     }
 
     public void HitFlash()
