@@ -98,9 +98,9 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 1711972890957102687}
   - component: {fileID: 3293870901104301855}
   - component: {fileID: 191316972495347080}
+  - component: {fileID: 5903447821468753231}
   m_Layer: 5
   m_Name: DamageUI
   m_TagString: Untagged
@@ -254,3 +255,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageText
   text: {fileID: 4458669766064068478}
   canvas: {fileID: 8351941591230540457}
+  animator: {fileID: 5903447821468753231}
+--- !u!95 &5903447821468753231
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205705659618551932}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0bb9f6e957578b5428aaf323baaf9574, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
