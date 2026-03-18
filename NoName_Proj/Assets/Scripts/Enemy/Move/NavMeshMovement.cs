@@ -32,4 +32,13 @@ public class NavMeshMovement : EnemyMovement
         enemy.animator.SetBool("isMove", false);
         enemy.animator.SetFloat("Speed", 0f);
     }
+
+    public override void Resume()
+    {
+        var agent = GetComponent<NavMeshAgent>();
+        if (agent != null)
+        {
+            agent.isStopped = false;
+        }
+    }
 }

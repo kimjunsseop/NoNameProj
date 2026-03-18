@@ -49,14 +49,19 @@ public class DamageText : MonoBehaviour
     public Canvas canvas;
     public Animator animator;
 
-    public void Show(int damage, Vector3 worldPos)
+    public void Show(int damage, Vector3 worldPos, bool isCritical)
     {
         transform.position = worldPos;
-
         text.text = damage.ToString();
 
-        // 🔥 애니메이션 재생
-        animator.Play("DamagePop", 0, 0f);
+        if (isCritical)
+        {
+            animator.Play("CriticalPop");
+        }
+        else
+        {
+            animator.Play("DamagePop");
+        }
     }
 
     void LateUpdate()

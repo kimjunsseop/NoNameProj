@@ -5,8 +5,13 @@ public class Bullet : MonoBehaviour
     float speed;
     float damage;
 
+    bool isCritical;
+    float critMultiplier = 2f;
+    float critChance = 0.2f;
+
     Rigidbody rb;
     Poolable poolable;
+
     public GameObject hitEffectPrefab;
     public GameObject bossHitEffectPrefab;
     public float lifeTime = 3f;
@@ -20,6 +25,7 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         poolable = GetComponent<Poolable>();
+
         if (meshRenderer == null)
             meshRenderer = GetComponentInChildren<Renderer>();
 
@@ -29,7 +35,10 @@ public class Bullet : MonoBehaviour
     public void Init(float bulletSpeed, float bulletDamage)
     {
         speed = bulletSpeed;
-        damage = bulletDamage;
+
+        // ✅ 크리티컬 판정
+        isCritical = Random.value < critChance;
+        damage = isCritical ? bulletDamage * critMultiplier : bulletDamage;
 
         rb.linearVelocity = transform.forward * speed;
 
@@ -39,69 +48,56 @@ public class Bullet : MonoBehaviour
         Invoke(nameof(ReturnToPool), lifeTime);
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy") || other.CompareTag("Boss"))
+        {
+            SpawnEnemyHitEffect();
+
+            IDamageable d = other.GetComponent<IDamageable>();
+
+            if (d != null)
+            {
+                DamageInfo info = new DamageInfo
+                {
+                    damage = damage,
+                    isCritical = isCritical,
+                    hitPoint = transform.position,
+                    hitDirection = transform.forward
+                };
+
+                d.TakeDamage(info);
+            }
+
+            ReturnToPool();
+        }
+    }
+
     void ApplyDamageVisual()
     {
-        if (meshRenderer == null)
-            return;
+        if (meshRenderer == null) return;
 
         meshRenderer.GetPropertyBlock(mpb);
 
-        // 데미지 기반 색 변화
         float t = Mathf.InverseLerp(5f, 50f, damage);
-        Color color = Color.Lerp(Color.white, Color.red, t);
+        Color color = isCritical
+            ? Color.yellow
+            : Color.Lerp(Color.white, Color.red, t);
 
         mpb.SetColor("_BaseColor", color);
-
         meshRenderer.SetPropertyBlock(mpb);
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            SpawnEnemyHitEffect();
-            IDamageable d = other.GetComponent<IDamageable>();
-
-            if (d != null)
-            {
-                d.TakeDamage(damage);
-            }
-
-            ReturnToPool();
-        }
-
-        if (other.CompareTag("Boss"))
-        {
-            //SpawnBossHitEffect(); 이거 따로 만들기
-            IDamageable d = other.GetComponent<IDamageable>();
-
-            if (d != null)
-            {
-                d.TakeDamage(damage);
-            }
-
-            ReturnToPool();
-        }
-    }
-    
     void SpawnEnemyHitEffect()
     {
         GameObject effect = PoolManager.Instance.Get(hitEffectPrefab);
-
         effect.transform.position = transform.position + new Vector3(0, -1f, 0);
         effect.transform.rotation = Quaternion.identity;
     }
 
-    void SpawnBossHitEffect()
-    {
-        GameObject effect = PoolManager.Instance.Get(bossHitEffectPrefab);
-        effect.transform.position = transform.position + new Vector3(0, 1f, 0);
-        effect.transform.rotation = Quaternion.identity;
-    }
     void ReturnToPool()
     {
         rb.linearVelocity = Vector3.zero;
-
         PoolManager.Instance.Return(gameObject);
     }
 }

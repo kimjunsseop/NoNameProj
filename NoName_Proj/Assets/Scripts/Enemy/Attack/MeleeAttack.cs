@@ -12,12 +12,19 @@ public class MeleeAttack : EnemyAttack
     {
         if (enemy.target == null) return;
 
-        IDamageable damageable =
-            enemy.target.GetComponent<IDamageable>();
+        IDamageable damageable = enemy.target.GetComponent<IDamageable>();
 
         if (damageable != null)
         {
-            damageable.TakeDamage(enemy.data.attackPower);
+            DamageInfo info = new DamageInfo
+            {
+                damage = enemy.data.attackPower,
+                isCritical = false,
+                hitPoint = enemy.target.position,
+                hitDirection = enemy.transform.forward
+            };
+
+            damageable.TakeDamage(info);
         }
     }
 }

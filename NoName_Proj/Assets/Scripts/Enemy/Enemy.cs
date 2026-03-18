@@ -1,15 +1,15 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 public enum EnemyState
 {
     Idle,
     Chase,
     Attack,
+    Hit,
     Dead
 }
-
 public class Enemy : MonoBehaviour, IDamageable
 {
     public EnemyState state;
@@ -99,25 +99,27 @@ public class Enemy : MonoBehaviour, IDamageable
         brain.OnStateEnter(newState);
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(DamageInfo info)
     {
         if (state == EnemyState.Dead) return;
 
-        currentHp -= damage;
+        currentHp -= info.damage;
         // hitFlash 발동
         hitFlash.HitFlash();
 
         ui.Show();
         ui.UpdateHealth(currentHp, data.maxHp);
 
-        DamageTextManager.Instance.ShowDamage((int)damage, transform.position + Vector3.up * 2f);
-
+        DamageTextManager.Instance.ShowDamage((int)info.damage, transform.position + Vector3.up * 2f, info.isCritical);
         if (currentHp <= 0)
         {
             Die();
         }
+        if (info.isCritical)
+        {
+            ChangeState(EnemyState.Hit);
+        }
     }
-
     void Die()
     {
         ChangeState(EnemyState.Dead);

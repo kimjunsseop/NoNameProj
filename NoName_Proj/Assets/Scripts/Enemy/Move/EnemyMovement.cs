@@ -12,4 +12,5 @@ public abstract class EnemyMovement : MonoBehaviour
     public abstract void MoveTo(Vector3 position);
 
     public abstract void Stop();
+    public abstract void Resume();
 }

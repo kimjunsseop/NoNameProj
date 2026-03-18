@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyBrain : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class EnemyBrain : MonoBehaviour
 
             case EnemyState.Attack:
                 UpdateAttack();
+                break;
+            case EnemyState.Hit:
+                enemy.StartCoroutine(HitRoutine());
                 break;
         }
     }
@@ -89,5 +93,16 @@ public class EnemyBrain : MonoBehaviour
         }
 
         enemy.attack.TryAttack();
+    }
+
+    IEnumerator HitRoutine()
+    {
+        enemy.movement.Stop();
+        enemy.animator.Play("Hit");
+
+        yield return new WaitForSeconds(1f);
+
+        if (enemy.state != EnemyState.Dead)
+            enemy.ChangeState(EnemyState.Chase);
     }
 }

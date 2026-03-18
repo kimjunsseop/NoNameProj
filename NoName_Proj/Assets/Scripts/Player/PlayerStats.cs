@@ -54,9 +54,9 @@ public class PlayerStats : MonoBehaviour, IDamageable
         OnHpChanged?.Invoke(currentHp, maxHp);
     }
 
-     public void TakeDamage(float damage)
+    public void TakeDamage(DamageInfo info)
     {
-        currentHp -= (int)damage;
+        currentHp -= (int)info.damage;
 
         if (currentHp < 0)
             currentHp = 0;

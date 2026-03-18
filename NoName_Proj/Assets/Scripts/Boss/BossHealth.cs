@@ -19,9 +19,9 @@ public class BossHealth : MonoBehaviour, IDamageable
         GameEvents.OnBossSpawned?.Invoke(this);
     }
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage(DamageInfo info)
     {
-        currentHp -= (int)dmg;
+        currentHp -= (int)info.damage;
 
         if (currentHp < 0)
             currentHp = 0;

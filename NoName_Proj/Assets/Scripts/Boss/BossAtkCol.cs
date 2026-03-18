@@ -10,7 +10,15 @@ public class BossAtkCol : MonoBehaviour
 
         if (damageable != null)
         {
-            damageable.TakeDamage(damage);
+            DamageInfo info = new DamageInfo
+            {
+                damage = damage,
+                isCritical = false,
+                hitPoint = transform.position,
+                hitDirection = transform.forward
+            };
+
+            damageable.TakeDamage(info);
         }
     }
 }
