@@ -4,11 +4,13 @@ public class OcclusionTarget : MonoBehaviour
 {
     void OnEnable()
     {
-        OcclusionTargetRegistry.Instance?.Register(transform);
+        if (OcclusionTargetRegistry.Instance != null)
+            OcclusionTargetRegistry.Instance.Register(transform);
     }
 
     void OnDisable()
     {
-        OcclusionTargetRegistry.Instance?.Unregister(transform);
+        if (OcclusionTargetRegistry.Instance != null)
+            OcclusionTargetRegistry.Instance.Unregister(transform);
     }
 }

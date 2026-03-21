@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 6922076491429850533}
   - component: {fileID: 1039751909285136513}
   - component: {fileID: 812535301772196263}
-  - component: {fileID: -4446240139110602351}
+  - component: {fileID: 7793067141692861620}
   m_Layer: 7
   m_Name: MonsterB
   m_TagString: Enemy
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 289bede2b1133d54d9b25f68d4c837ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitFlashController
---- !u!114 &-4446240139110602351
+--- !u!114 &7793067141692861620
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

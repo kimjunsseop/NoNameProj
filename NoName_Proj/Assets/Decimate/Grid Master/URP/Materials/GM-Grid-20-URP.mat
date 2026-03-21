@@ -71,6 +71,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Alpha: 1
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _BUILTIN_QueueControl: -1
@@ -82,6 +83,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _Emission: 1
+    - _Float: 50
     - _Metallic: 1
     - _QueueControl: 0
     - _QueueOffset: 0
