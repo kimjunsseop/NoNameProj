@@ -1009,7 +1009,6 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
-  - component: {fileID: 330585549}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1167,20 +1166,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!114 &330585549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2a2badcfd96a6946a7c204ca6627a60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OcclusionController
-  maxTargets: 20
-  maxDistance: 30
 --- !u!1 &387037818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,50 +1770,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5284622003724041826, guid: 169a1b8feae6ee54e9ec76766c1b3bd1, type: 3}
   m_PrefabInstance: {fileID: 945599408}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &732777002
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 732777004}
-  - component: {fileID: 732777003}
-  m_Layer: 0
-  m_Name: OCl
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &732777003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 732777002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8e670e674fd2454bbf7353b980bf66f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OcclusionTargetRegistry
---- !u!4 &732777004
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 732777002}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.82764, y: -0, z: -7.92201}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &752111350
 GameObject:
   m_ObjectHideFlags: 0
@@ -4484,4 +4425,3 @@ SceneRoots:
   - {fileID: 1070636262}
   - {fileID: 636191692}
   - {fileID: 1823725593}
-  - {fileID: 732777004}
