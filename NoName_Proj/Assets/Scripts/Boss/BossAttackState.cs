@@ -2,35 +2,31 @@ using UnityEngine;
 
 public class BossAttackState : BossState
 {
-    float attackCooldown = 2f;
-    float timer;
+
+    bool isAttacking = false;
 
     public override void Enter(BossBrain brain)
     {
         brain.animator.SetBool("isMove", false);
-        timer = 0f;
+        isAttacking = true;
+
+        brain.attack.DoAttack(brain.animator, () =>
+        {
+            isAttacking = false;
+        });
     }
 
     public override void Tick(BossBrain brain)
     {
+        if (isAttacking) return;
+
         float dist = Vector3.Distance(brain.transform.position, brain.player.position);
 
-        if (dist > brain.attack.attackRange)
-        {
+        if (dist <= brain.attack.attackRange)
+            brain.ChangeState(new BossAttackState());
+        else
             brain.ChangeState(new BossChaseState());
-            return;
-        }
-
-        timer += brain.tickInterval;
-
-        if (timer >= attackCooldown)
-        {
-            timer = 0f;
-            brain.attack.DoAttack(brain.animator);
-        }
     }
 
-    public override void Exit(BossBrain brain)
-    {
-    }
+    public override void Exit(BossBrain brain) {}
 }
