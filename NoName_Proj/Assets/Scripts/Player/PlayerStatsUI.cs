@@ -78,7 +78,7 @@ public class PlayerStatsUI : MonoBehaviour
         PlayerMove move = t.GetComponent<PlayerMove>();
         if (move != null)
         {
-            UpdateMoveSpeed(move.moveSpeed);   
+            UpdateMoveSpeed(move.CurrentSpeed);   
         }
     }
 
