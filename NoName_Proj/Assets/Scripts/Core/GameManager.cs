@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -28,8 +29,23 @@ public class GameManager : MonoBehaviour
 
     void OnStageClear()
     {
-        Time.timeScale = 0f;
+    StartCoroutine(StageClearFlow());
+    }
 
+    IEnumerator StageClearFlow()
+    {
+
+        // 1. Stage Clear UI 띄우기
+        GameEvents.OnShowStageClearUI?.Invoke();
+
+        // 2. 잠깐 보여주기 (Realtime 기준)
+        yield return new WaitForSecondsRealtime(2f);
+
+        // 3. Stage Clear UI 끄기
+        GameEvents.OnHideStageClearUI?.Invoke();
+
+        // 4. Upgrade UI 열기
+        Time.timeScale = 0f;
         GameEvents.OnOpenUpgradeUI?.Invoke();
     }
 

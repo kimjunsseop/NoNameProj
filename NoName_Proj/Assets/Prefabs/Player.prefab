@@ -2696,7 +2696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   detector: {fileID: 1129838663952604652}
-  baseSpeed: 3
+  baseSpeed: 5
   jumpPower: 3
   GroundCheckDis: 0.4
   groundLayer:

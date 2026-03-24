@@ -685,6 +685,7 @@ GameObject:
   - component: {fileID: 81119648}
   - component: {fileID: 81119647}
   - component: {fileID: 81119649}
+  - component: {fileID: 81119650}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -837,6 +838,7 @@ MonoBehaviour:
   warningUI: {fileID: 1892736529}
   projectilePrefab: {fileID: 3032685741893750367, guid: b3aee79ba5fd0c645a88ce12d740eff8, type: 3}
   firePoint: {fileID: 1956750008}
+  trackingTime: 0.8
 --- !u!114 &81119648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,6 +869,20 @@ MonoBehaviour:
   duration: 3
   slowEffectPrefab: {fileID: 2292039342016128035, guid: 9108891b340b4124bb4f13f521f0bc9c, type: 3}
   markerPrefab: {fileID: 0}
+--- !u!114 &81119650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81119639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a77df27baf65ca489da620d747e2263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossStunZoneSkill
+  cooldown: 3
+  zonePrefab: {fileID: 1164718746605294273, guid: ab7dea5cb9e51ca40b0a4c0dead7f746, type: 3}
 --- !u!1 &89199796
 GameObject:
   m_ObjectHideFlags: 0

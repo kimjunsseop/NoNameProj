@@ -35,6 +35,11 @@ public static class GameEvents
 
     public static Action OnGameWin; // 보스 처리 고나련
 
+    // 밋밋한거 바꾼거
+    public static Action OnShowStageClearUI;
+    public static Action OnHideStageClearUI;
+    // 이거 두개
+
     // 테스트용 꼭 지울것
     public static Transform Player;
 }

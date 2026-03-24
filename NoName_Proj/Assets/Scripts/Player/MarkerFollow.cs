@@ -7,6 +7,16 @@ public class MarkerFollow : MonoBehaviour
 
     float timer;
 
+    void OnEnable()
+    {
+        BossProjectile.OnExplosion += RemoveMarker;
+    }
+
+    void OnDisable()
+    {
+        BossProjectile.OnExplosion -= RemoveMarker;
+    }
+
     void Update()
     {
         timer += Time.deltaTime;
@@ -15,5 +25,10 @@ public class MarkerFollow : MonoBehaviour
         {
             transform.position = target.position;
         }
+    }
+
+    void RemoveMarker()
+    {
+        Destroy(gameObject);
     }
 }

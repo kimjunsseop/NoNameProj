@@ -15,35 +15,31 @@ public class BossBombSkill : BossSkill
 
     protected override IEnumerator Execute()
     {
-        Transform targetPos = brain.player;
+        Transform player = brain.player;
 
-        // 1. 마크 생성
-        GameObject marker = Instantiate(markerPrefab, targetPos.position, Quaternion.Euler(90,0,0));
+        // 1. 마커 생성
+        GameObject marker = Instantiate(markerPrefab, player.position, Quaternion.Euler(90,0,0));
         var follow = marker.GetComponent<MarkerFollow>();
-        follow.target = targetPos;
-        follow.trackingTime = trackingTime;
+        follow.target = player;
+        follow.trackingTime = warningTime; // 🔥 발사 전까지 추적
 
-        // 2. 경고 UI
         if (warningUI != null)
-        {
             warningUI.SetActive(true);
-        }
 
-        // 3. 대기
+        // 2. 발사 전까지 대기
         yield return new WaitForSeconds(warningTime);
 
-        if (marker != null) 
-        {
-            Destroy(marker);
-        }
+        // 🔥 여기서 최종 타겟 확정
+        Vector3 finalTarget = marker.transform.position;
 
-        if (warningUI != null) 
-        {
+
+        if (warningUI != null)
             warningUI.SetActive(false);
-        }
-        // 4. 발사
+
+        // 3. 발사
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
 
-        proj.GetComponent<BossProjectile>().Init(targetPos, trackingTime);
+        // 🔥 Vector3로 넘긴다 (중요)
+        proj.GetComponent<BossProjectile>().Init(finalTarget);
     }
 }
