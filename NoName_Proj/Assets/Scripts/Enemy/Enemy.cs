@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public Transform target;
 
     public event Action<Enemy> OnDeath; // 매니저가 구독할거. list관리할때 지우려고
-
+    public event Action OnCriticalHit;
     private EnemyManager manager;
     private HitFlashController hitFlash;
     [Header("Orb")]
@@ -82,6 +82,7 @@ public class Enemy : MonoBehaviour, IDamageable
     void OnDisable()
     {
         OnDeath = null;
+        OnCriticalHit = null;
     }
 
     public void Tick()
@@ -117,6 +118,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         if (info.isCritical)
         {
+            OnCriticalHit?.Invoke();
             ChangeState(EnemyState.Hit);
         }
     }

@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 6922076491429850533}
   - component: {fileID: 1039751909285136513}
   - component: {fileID: 812535301772196263}
+  - component: {fileID: 325722454793550817}
   m_Layer: 7
   m_Name: MonsterB
   m_TagString: Enemy
@@ -424,6 +425,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 289bede2b1133d54d9b25f68d4c837ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitFlashController
+--- !u!114 &325722454793550817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147231289499110541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 289970629b48f37469c81add11d7be3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyEffectHandler
+  criticalDecalPrefab: {fileID: 1021457056361283508, guid: 8dfd7376041ff0044941e8f6ba1d3d2e, type: 3}
 --- !u!1 &1250595777208209392
 GameObject:
   m_ObjectHideFlags: 0

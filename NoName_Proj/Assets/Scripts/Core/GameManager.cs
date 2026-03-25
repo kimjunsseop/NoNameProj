@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         GameEvents.OnShowStageClearUI?.Invoke();
 
         // 2. 잠깐 보여주기 (Realtime 기준)
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(3f);
 
         // 3. Stage Clear UI 끄기
         GameEvents.OnHideStageClearUI?.Invoke();
