@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8354811953166041682}
   - component: {fileID: 5921767217303444064}
   - component: {fileID: 2663553761726282262}
+  - component: {fileID: 545970638267383359}
   m_Layer: 0
   m_Name: Exp
   m_TagString: Untagged
@@ -180,3 +181,15 @@ MonoBehaviour:
   accelerate: 10
   attractDistance: 11.36
   pickupDistance: 0.2
+--- !u!114 &545970638267383359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7873972140378090588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64db4b2774defb468dbdffffe002abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Poolable

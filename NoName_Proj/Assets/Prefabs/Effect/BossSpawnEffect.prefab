@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3558440636753744133}
   - component: {fileID: 5365800667046131580}
   - component: {fileID: 2873864354113987623}
+  - component: {fileID: 3653554984181019006}
   m_Layer: 0
   m_Name: BossSpawnEffect
   m_TagString: Untagged
@@ -4907,3 +4908,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f70e8c25205764a9a05314dadb5abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectAutoReturn
+--- !u!114 &3653554984181019006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4324968127605537629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64db4b2774defb468dbdffffe002abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Poolable

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IPoolable
 {
     float speed;
     float damage;
@@ -30,6 +30,16 @@ public class Bullet : MonoBehaviour
             meshRenderer = GetComponentInChildren<Renderer>();
 
         mpb = new MaterialPropertyBlock();
+    }
+    public void OnSpawn()
+    {
+        rb.linearVelocity = Vector3.zero;
+    }
+
+    public void OnDespawn()
+    {
+        rb.linearVelocity = Vector3.zero;
+        CancelInvoke();
     }
 
     public void Init(float bulletSpeed, float bulletDamage)
@@ -97,7 +107,6 @@ public class Bullet : MonoBehaviour
 
     void ReturnToPool()
     {
-        rb.linearVelocity = Vector3.zero;
-        PoolManager.Instance.Return(gameObject);
+        poolable.ReturnToPool();
     }
 }

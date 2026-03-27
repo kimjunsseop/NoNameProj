@@ -883,6 +883,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossStunZoneSkill
   cooldown: 3
   zonePrefab: {fileID: 1164718746605294273, guid: ab7dea5cb9e51ca40b0a4c0dead7f746, type: 3}
+  minCount: 3
+  maxCount: 4
+  spawnRadius: 8
 --- !u!1 &89199796
 GameObject:
   m_ObjectHideFlags: 0
@@ -5482,6 +5485,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502467492}
   m_CullTransparentMesh: 1
+--- !u!1 &1581052571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1581052573}
+  - component: {fileID: 1581052572}
+  m_Layer: 0
+  m_Name: PoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1581052572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581052571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbde1d712bd3a874586e72effa383b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PoolManager
+  configs:
+  - {fileID: 11400000, guid: bf3a989154be14a4796394ff0482b4fe, type: 2}
+  - {fileID: 11400000, guid: 5534ce9b63ff6cc4883b4138537a9e8d, type: 2}
+  - {fileID: 11400000, guid: 2a1f4277c6e1f974abb8bd1d5ac915a9, type: 2}
+  - {fileID: 11400000, guid: 8066535d4548c964ba72fef88611c9dc, type: 2}
+  - {fileID: 11400000, guid: 50cc35595838d0a4e8aa2f4297dbf618, type: 2}
+  - {fileID: 11400000, guid: 7b3ac41e575f30c4c8e7832bb7bf1c88, type: 2}
+  - {fileID: 11400000, guid: d54830efb2a886d41b2807ac02155e7e, type: 2}
+  - {fileID: 11400000, guid: 94cb50eff4b176e4198699f3941377d9, type: 2}
+  - {fileID: 11400000, guid: f101f6c59747c1f43aa716f6e5082abd, type: 2}
+--- !u!4 &1581052573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581052571}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.79354, y: -0, z: 3.7023}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1606434873
 GameObject:
   m_ObjectHideFlags: 0
@@ -6763,3 +6820,4 @@ SceneRoots:
   - {fileID: 1823725593}
   - {fileID: 81119637}
   - {fileID: 1306527569}
+  - {fileID: 1581052573}

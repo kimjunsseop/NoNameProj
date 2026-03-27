@@ -10,7 +10,7 @@ public enum EnemyState
     Hit,
     Dead
 }
-public class Enemy : MonoBehaviour, IDamageable
+public class Enemy : MonoBehaviour, IDamageable, IPoolable
 {
     public EnemyState state;
 
@@ -56,33 +56,29 @@ public class Enemy : MonoBehaviour, IDamageable
         attack.Initialize(this);
     }
 
-    void OnEnable()
+    public void OnSpawn()
     {
         currentHp = data.maxHp;
 
-        // var rb = GetComponent<Rigidbody>();
-        // if (rb != null)
-        // {
-        //     rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-        // }
-
-        // var col = GetComponent<Collider>();
-        // if (col != null)
-        // col.enabled = true;
-
-        // var agent = GetComponent<NavMeshMovement>();
-        // if (agent != null)
-        //     agent.enabled = true;
-
-        
+        // 오류 해결을 위한 코드 인스펙터에서 agent끄고 여기서 키라는데
+        var agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (agent != null)
+        {
+            agent.enabled = true;
+            agent.Warp(transform.position); // 🔥 중요
+        }
 
         ChangeState(EnemyState.Idle);
     }
 
-    void OnDisable()
+    public void OnDespawn()
     {
         OnDeath = null;
         OnCriticalHit = null;
+
+        var agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (agent != null)
+            agent.enabled = false;
     }
 
     public void Tick()

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1954515741798323314}
   - component: {fileID: 5607218036358766444}
   - component: {fileID: 7387056594950336435}
+  - component: {fileID: -7914512767474932774}
   m_Layer: 0
   m_Name: BombSkillEffect
   m_TagString: Untagged
@@ -4907,3 +4908,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f70e8c25205764a9a05314dadb5abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectAutoReturn
+--- !u!114 &-7914512767474932774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8919546882320206668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64db4b2774defb468dbdffffe002abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Poolable

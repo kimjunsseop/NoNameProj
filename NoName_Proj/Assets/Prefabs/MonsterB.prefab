@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 1039751909285136513}
   - component: {fileID: 812535301772196263}
   - component: {fileID: 325722454793550817}
+  - component: {fileID: -1456555316778446013}
   m_Layer: 7
   m_Name: MonsterB
   m_TagString: Enemy
@@ -274,7 +275,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147231289499110541}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -438,6 +439,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyEffectHandler
   criticalDecalPrefab: {fileID: 1021457056361283508, guid: 8dfd7376041ff0044941e8f6ba1d3d2e, type: 3}
+--- !u!114 &-1456555316778446013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147231289499110541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64db4b2774defb468dbdffffe002abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Poolable
 --- !u!1 &1250595777208209392
 GameObject:
   m_ObjectHideFlags: 0

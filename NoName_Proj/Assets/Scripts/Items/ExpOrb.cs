@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
-public class ExpOrb : MonoBehaviour
+public class ExpOrb : MonoBehaviour, IPoolable
 {
     [Header("Exp Settings")]
     public int expValue = 1;
@@ -38,13 +38,20 @@ public class ExpOrb : MonoBehaviour
         mpb = new MaterialPropertyBlock();
     }
 
-    private void OnEnable()
+    public void OnSpawn()
     {
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
         moveSpeed = 5f;
         isAttracting = false;
+        player = null;
+
+        bc.isTrigger = false;
+    }
+
+    public void OnDespawn()
+    {
         player = null;
     }
 
@@ -91,6 +98,6 @@ public class ExpOrb : MonoBehaviour
 
     private void ReturnToPool()
     {
-        PoolManager.Instance.Return(gameObject);
+        GetComponent<Poolable>().ReturnToPool();
     }
 }

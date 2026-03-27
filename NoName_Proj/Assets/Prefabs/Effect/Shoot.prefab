@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 918164883127209783}
   - component: {fileID: 4837482995568686541}
   - component: {fileID: 7409391517431998734}
+  - component: {fileID: -2996407784331176675}
   m_Layer: 0
   m_Name: Shoot
   m_TagString: Untagged
@@ -4907,3 +4908,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f70e8c25205764a9a05314dadb5abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectAutoReturn
+--- !u!114 &-2996407784331176675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2916273817513264348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64db4b2774defb468dbdffffe002abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Poolable

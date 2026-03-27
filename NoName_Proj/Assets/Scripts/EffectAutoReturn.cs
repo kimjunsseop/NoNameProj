@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(ParticleSystem))]
-public class EffectAutoReturn : MonoBehaviour
+public class EffectAutoReturn : MonoBehaviour, IPoolable
 {
     private ParticleSystem ps;
     private Poolable poolable;
@@ -9,25 +9,21 @@ public class EffectAutoReturn : MonoBehaviour
     void Awake()
     {
         ps = GetComponent<ParticleSystem>();
+        poolable = GetComponent<Poolable>();
     }
 
-    void OnEnable()
+    public void OnSpawn()
     {
-        poolable = GetComponent<Poolable>();
         ps.Play();
+    }
+
+    public void OnDespawn()
+    {
+        ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     void OnParticleSystemStopped()
     {
-        if (poolable != null)
-        {
-            //Debug.Log("a");
-            PoolManager.Instance.Return(gameObject);
-        }
-        else
-        {
-            //Debug.Log("b");
-            gameObject.SetActive(false);
-        }
+        poolable.ReturnToPool();
     }
 }

@@ -74,6 +74,6 @@ public class DamageText : MonoBehaviour
     // 🔥 애니메이션 끝날 때 호출됨
     public void OnAnimationEnd()
     {
-        PoolManager.Instance.Return(gameObject);
+        GetComponent<Poolable>().ReturnToPool();
     }
 }
