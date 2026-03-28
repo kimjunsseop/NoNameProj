@@ -15,7 +15,8 @@ public class BossAtkCol : MonoBehaviour
                 damage = damage,
                 isCritical = false,
                 hitPoint = transform.position,
-                hitDirection = transform.forward
+                hitDirection = transform.forward,
+                cameraShake = 0.5f
             };
 
             damageable.TakeDamage(info);

@@ -5,4 +5,5 @@ public struct DamageInfo
     public bool isCritical;
     public Vector3 hitPoint;
     public Vector3 hitDirection;
+    public float cameraShake;
 }

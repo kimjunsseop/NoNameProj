@@ -13,9 +13,16 @@ public class SequenceController : MonoBehaviour
         introTimeline.Play();
     }
 
+    void OnDestroy()
+    {
+        if (introTimeline != null)
+            introTimeline.stopped -= OnIntroFinished;
+    }
+
     void OnIntroFinished(PlayableDirector dir)
     {
-        button.SetActive(true);
+        if (button != null)
+            button.SetActive(true);
     }
 
     public void OnButtonClick()

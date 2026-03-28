@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour, IPoolable
 
     bool isCritical;
     float critMultiplier = 2f;
-    float critChance = 0.2f;
+    float critChance = 0.05f;
 
     Rigidbody rb;
     Poolable poolable;
@@ -31,6 +31,7 @@ public class Bullet : MonoBehaviour, IPoolable
 
         mpb = new MaterialPropertyBlock();
     }
+
     public void OnSpawn()
     {
         rb.linearVelocity = Vector3.zero;
@@ -62,7 +63,7 @@ public class Bullet : MonoBehaviour, IPoolable
     {
         if (other.CompareTag("Enemy") || other.CompareTag("Boss"))
         {
-            SpawnEnemyHitEffect();
+            SpawnHitEffect(other);
 
             IDamageable d = other.GetComponent<IDamageable>();
 
@@ -83,26 +84,58 @@ public class Bullet : MonoBehaviour, IPoolable
         }
     }
 
+    void SpawnHitEffect(Collider other)
+    {
+        bool isBoss = other.CompareTag("Boss");
+
+        GameObject prefab = isBoss ? bossHitEffectPrefab : hitEffectPrefab;
+        GameObject effect = PoolManager.Instance.Get(prefab);
+
+        if (isBoss)
+        {
+            // 🔥 보스는 중심 기준으로 바깥으로 튀어나오게
+            Vector3 dir = (transform.position - other.bounds.center).normalized;
+
+            float offset = 1.5f; // 보스 크기 고려
+            effect.transform.position = transform.position + dir * offset;
+
+            effect.transform.rotation = Quaternion.LookRotation(dir);
+        }
+        else
+        {
+            // 👉 기존 방식 유지
+            effect.transform.position = transform.position + new Vector3(0, -1f, 0);
+            effect.transform.rotation = Quaternion.identity;
+        }
+    }
+
     void ApplyDamageVisual()
     {
         if (meshRenderer == null) return;
 
         meshRenderer.GetPropertyBlock(mpb);
 
-        float t = Mathf.InverseLerp(5f, 50f, damage);
-        Color color = isCritical
-            ? Color.yellow
-            : Color.Lerp(Color.white, Color.red, t);
+        Color color;
 
-        mpb.SetColor("_BaseColor", color);
+        if (isCritical)
+        {
+            // 🔥 크리티컬 = 빨간색 (확실하게)
+            color = Color.red;
+        }
+        else
+        {
+            float t = Mathf.InverseLerp(5f, 50f, damage);
+
+            // 🔥 부드럽지만 눈에 보이게
+            t = Mathf.Pow(t, 1.8f);
+
+            // 👉 흰색 → 노란색
+            color = Color.Lerp(Color.white, Color.yellow, t);
+        }
+
+        mpb.SetColor("_PowerColor", color);
+
         meshRenderer.SetPropertyBlock(mpb);
-    }
-
-    void SpawnEnemyHitEffect()
-    {
-        GameObject effect = PoolManager.Instance.Get(hitEffectPrefab);
-        effect.transform.position = transform.position + new Vector3(0, -1f, 0);
-        effect.transform.rotation = Quaternion.identity;
     }
 
     void ReturnToPool()

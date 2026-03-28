@@ -57,5 +57,13 @@ public class BossBrain : MonoBehaviour
         currentState = newState;
         currentState?.Enter(this);
     }
+
+    public void OnDieAnimationEnd()
+    {
+        if (currentState is BossDieState dieState)
+        {
+            dieState.OnAnimationEnd(this);
+        }
+    }
     
 }

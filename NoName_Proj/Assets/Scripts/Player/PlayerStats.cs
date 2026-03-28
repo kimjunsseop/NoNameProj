@@ -11,10 +11,12 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     public event Action<int,int> OnHpChanged;
     public event Action<int> OnExpChanged;
+    private Animator anim;
 
     void Awake()
     {
         currentHp = maxHp;
+        anim = GetComponent<Animator>();
     }
 
     public void AddExp(int amount)
@@ -63,6 +65,11 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
         OnHpChanged?.Invoke(currentHp, maxHp);
 
+        if (info.cameraShake > 0f)
+        {
+            CameraShakeManager.Instance?.Shake(info.cameraShake);
+        }
+
         if (currentHp == 0)
         {
             Die();
@@ -71,8 +78,11 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     void Die()
     {
-        Debug.Log("Player Dead");
+        anim.Play("Die");
+    }
 
+    public void EndingDieAnim()
+    {
         GameEvents.OnPlayerDead?.Invoke();
     }
 }

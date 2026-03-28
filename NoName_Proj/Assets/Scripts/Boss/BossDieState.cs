@@ -15,4 +15,9 @@ public class BossDieState : BossState
     public override void Exit(BossBrain brain)
     {
     }
+
+    public void OnAnimationEnd(BossBrain brain)
+    {
+        GameEvents.OnGameWin?.Invoke();
+    }
 }

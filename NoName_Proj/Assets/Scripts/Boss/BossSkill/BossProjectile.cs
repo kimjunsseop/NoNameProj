@@ -82,7 +82,8 @@ public class BossProjectile : MonoBehaviour
                 {
                     damage = damage,
                     hitPoint = transform.position,
-                    hitDirection = (hit.transform.position - transform.position).normalized
+                    hitDirection = (hit.transform.position - transform.position).normalized,
+                    cameraShake = 1.2f
                 });
             }
         }

@@ -21,7 +21,8 @@ public class MeleeAttack : EnemyAttack
                 damage = enemy.data.attackPower,
                 isCritical = false,
                 hitPoint = enemy.target.position,
-                hitDirection = enemy.transform.forward
+                hitDirection = enemy.transform.forward,
+                cameraShake = 0f
             };
 
             damageable.TakeDamage(info);

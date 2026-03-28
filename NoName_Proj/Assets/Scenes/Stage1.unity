@@ -1124,6 +1124,8 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
+  - component: {fileID: 330585550}
+  - component: {fileID: 330585549}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1281,6 +1283,72 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!114 &330585549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseSource
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 2
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.2
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!114 &330585550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e2d699f6b5acd44be3e7613c40acac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShakeManager
+  impulseSource: {fileID: 330585549}
 --- !u!1 &387037818
 GameObject:
   m_ObjectHideFlags: 0
@@ -3914,6 +3982,7 @@ GameObject:
   - component: {fileID: 1606434877}
   - component: {fileID: 1606434876}
   - component: {fileID: 1606434875}
+  - component: {fileID: 1606434879}
   - component: {fileID: 1606434878}
   m_Layer: 0
   m_Name: CinemachineCamera
@@ -4011,6 +4080,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dff458fdff44da4294ead28cff2a6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
+--- !u!114 &1606434879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606434873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseListener
+  ApplyAfter: 2
+  ChannelMask: 1
+  Gain: 1
+  Use2DDistance: 0
+  UseCameraSpace: 1
+  SignalCombinationMode: 0
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1712648514
 GameObject:
   m_ObjectHideFlags: 0
@@ -4640,46 +4733,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3081654115751145848, guid: c467c822c74aaa44180b1bdb34bd80b8, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 6928720497978814504, guid: 6069df80241118240b4755674acd49be, type: 3}
-    - target: {fileID: 3635013106502611566, guid: c467c822c74aaa44180b1bdb34bd80b8, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3635013106502611566, guid: c467c822c74aaa44180b1bdb34bd80b8, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3635013106502611566, guid: c467c822c74aaa44180b1bdb34bd80b8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 19.8
-      objectReference: {fileID: 0}
     - target: {fileID: 8691439599990120825, guid: c467c822c74aaa44180b1bdb34bd80b8, type: 3}
-      propertyPath: title
+      propertyPath: animator
       value: 
-      objectReference: {fileID: 60565403149752371}
-    - target: {fileID: 8835137535643081964, guid: c467c822c74aaa44180b1bdb34bd80b8, type: 3}
-      propertyPath: m_fontSize
-      value: 3.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 8835137535643081964, guid: c467c822c74aaa44180b1bdb34bd80b8, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 3.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 9107147532772152179, guid: c467c822c74aaa44180b1bdb34bd80b8, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 9107147532772152179, guid: c467c822c74aaa44180b1bdb34bd80b8, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9107147532772152179, guid: c467c822c74aaa44180b1bdb34bd80b8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 1.5
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 60565403149752376}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4690,17 +4747,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2495796106342408431, guid: c467c822c74aaa44180b1bdb34bd80b8, type: 3}
   m_PrefabInstance: {fileID: 60565403149752369}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &60565403149752371 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8835137535643081964, guid: c467c822c74aaa44180b1bdb34bd80b8, type: 3}
-  m_PrefabInstance: {fileID: 60565403149752369}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &60565403149752375 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8691439599990120825, guid: c467c822c74aaa44180b1bdb34bd80b8, type: 3}
@@ -4712,6 +4758,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc7c0b0672dc0a4191cba45ddf8a4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeCard
+--- !u!95 &60565403149752376 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8661286325982914854, guid: c467c822c74aaa44180b1bdb34bd80b8, type: 3}
+  m_PrefabInstance: {fileID: 60565403149752369}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

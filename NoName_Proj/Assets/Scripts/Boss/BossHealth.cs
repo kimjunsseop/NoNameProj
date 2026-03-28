@@ -31,9 +31,8 @@ public class BossHealth : MonoBehaviour, IDamageable
 
         if (currentHp <= 0)
         {
-            OnBossDead?.Invoke();
-            GameEvents.OnGameWin?.Invoke();
             brain.ChangeState(new BossDieState());
+            OnBossDead?.Invoke();
         }
     }
 }
