@@ -9,6 +9,8 @@ public class BossSkillController : MonoBehaviour
     int currentIndex = 0;
     bool isLoopRunning = false;
 
+    Coroutine loopCoroutine; // ⭐ 추가
+
     void Awake()
     {
         brain = GetComponent<BossBrain>();
@@ -22,12 +24,19 @@ public class BossSkillController : MonoBehaviour
 
     void OnEnable()
     {
-        StartCoroutine(SkillLoop());
+        GameEvents.OnPlayerDeadStart += StopAllSkills; // ⭐ 추가
+
+        loopCoroutine = StartCoroutine(SkillLoop());
+    }
+
+    void OnDisable()
+    {
+        GameEvents.OnPlayerDeadStart -= StopAllSkills;
     }
 
     IEnumerator SkillLoop()
     {
-        yield return new WaitForSeconds(2f); // 시작 딜레이
+        yield return new WaitForSeconds(2f);
 
         isLoopRunning = true;
 
@@ -43,6 +52,25 @@ public class BossSkillController : MonoBehaviour
             currentIndex++;
             if (currentIndex >= skills.Length)
                 currentIndex = 0;
+        }
+    }
+
+    // 🔥 핵심 함수
+    void StopAllSkills()
+    {
+        isLoopRunning = false;
+
+        // ⭐ 루프 코루틴 정지
+        if (loopCoroutine != null)
+        {
+            StopCoroutine(loopCoroutine);
+            loopCoroutine = null;
+        }
+
+        // ⭐ 실행 중인 스킬 강제 종료
+        foreach (var skill in skills)
+        {
+            skill.StopSkill();
         }
     }
 }

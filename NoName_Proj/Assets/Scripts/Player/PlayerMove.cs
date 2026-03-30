@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] public float baseSpeed = 3f; // 🔥 기존 moveSpeed → baseSpeed
     private List<float> speedModifiers = new List<float>();
 
+    bool isDead = false;
+
     public float CurrentSpeed
     {
         get
@@ -66,6 +68,7 @@ public class PlayerMove : MonoBehaviour
 
         detector.OnEnemyEnter += OnEnemyEntered;
         GameEvents.OnCameraReady += SetCamera;
+        GameEvents.OnPlayerDeadStart += StopPlayer;
 
         playerInput.Enable();
     }
@@ -78,6 +81,7 @@ public class PlayerMove : MonoBehaviour
 
         detector.OnEnemyEnter -= OnEnemyEntered;
         GameEvents.OnCameraReady -= SetCamera;
+        GameEvents.OnPlayerDeadStart -= StopPlayer;
 
         playerInput.Disable();
     }
@@ -89,6 +93,8 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        if (isDead) return;
+
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundLayer))
         {
@@ -98,6 +104,8 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isDead) return;
+        
         // 플레이어가 바라보는 방향 기준으로 앞뒤좌우 움직임
         // Vector3 moveDir = transform.forward * move.y + transform.right * move.x;
         // Vector3 velocity = rb.linearVelocity;
@@ -161,5 +169,15 @@ public class PlayerMove : MonoBehaviour
         baseSpeed += amount;
         Debug.Log($"real Speed : {baseSpeed}");
         GameEvents.OnMoveSpeedChanged?.Invoke(baseSpeed);
+    }
+
+    void StopPlayer()
+    {
+        isDead = true;
+        // 입력 완전 차단
+        playerInput.Disable();
+
+        // 이동 멈춤
+        rb.linearVelocity = Vector3.zero;
     }
 }

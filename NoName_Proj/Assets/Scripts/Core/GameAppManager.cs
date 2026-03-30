@@ -68,6 +68,8 @@ public class GameAppManager : MonoBehaviour
             DontDestroyOnLoad(Player);
         }
 
+        //PlayerStats.ResetState();
+
         // 씬 넘어갈 때 위치 리셋
         Player.transform.position = spawnPosition;
 

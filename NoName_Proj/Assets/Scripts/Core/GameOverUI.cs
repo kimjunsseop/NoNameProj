@@ -6,12 +6,12 @@ public class GameOverUI : MonoBehaviour
 
     void OnEnable()
     {
-        GameEvents.OnPlayerDead += Open;
+        GameEvents.OnPlayerDeadEnd += Open;
     }
 
     void OnDisable()
     {
-        GameEvents.OnPlayerDead -= Open;
+        GameEvents.OnPlayerDeadEnd -= Open;
     }
 
     void Open()
@@ -22,6 +22,7 @@ public class GameOverUI : MonoBehaviour
 
     public void OnClickReturnLobby()
     {
+        GameEvents.OnPlayerDead?.Invoke();
         panel.SetActive(false);
 
         GameAppManager.Instance.ReturnToLobby();

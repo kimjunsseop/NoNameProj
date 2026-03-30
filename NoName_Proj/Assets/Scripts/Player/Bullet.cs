@@ -96,7 +96,7 @@ public class Bullet : MonoBehaviour, IPoolable
             // 🔥 보스는 중심 기준으로 바깥으로 튀어나오게
             Vector3 dir = (transform.position - other.bounds.center).normalized;
 
-            float offset = 1.5f; // 보스 크기 고려
+            float offset = 1f; // 보스 크기 고려
             effect.transform.position = transform.position + dir * offset;
 
             effect.transform.rotation = Quaternion.LookRotation(dir);

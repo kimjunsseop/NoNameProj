@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, IDamageable
@@ -8,6 +9,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     public int maxHp = 100;
     public int currentHp;
+    public GameObject deathParticle;
 
     public event Action<int,int> OnHpChanged;
     public event Action<int> OnExpChanged;
@@ -78,11 +80,47 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     void Die()
     {
+        // 죽음 시작 이벤트
+        GameEvents.OnPlayerDeadStart?.Invoke();
+
+        float delay = 5f;
+        if (deathParticle != null)
+        {
+            GameObject particle = Instantiate(deathParticle, transform.position, Quaternion.identity);
+
+            var ps = particle.GetComponent<ParticleSystem>();
+            if (ps != null)
+            {
+                delay = ps.main.duration + ps.main.startLifetime.constantMax;
+
+                // ⭐ 여기 중요 (particle로 바꿔야 함)
+                Destroy(particle, delay + 1f);
+            }
+        }
+
+
+        anim.SetLayerWeight(1, 0f);
+        anim.SetBool("isMove", false);
+        anim.SetBool("isAttack", false);
+        anim.SetBool("isJump", false);
+        // 애니메이션 실행
         anim.Play("Die");
     }
-
     public void EndingDieAnim()
     {
-        GameEvents.OnPlayerDead?.Invoke();
+        StartCoroutine(DeathSequence());
+    }
+
+    IEnumerator DeathSequence()
+    {
+        yield return new WaitForSeconds(3);
+
+        GameEvents.OnPlayerDeadEnd?.Invoke();
+    }
+    public void ResetState()
+    {
+        anim.SetLayerWeight(1, 1f);
+
+        anim.Rebind();
     }
 }

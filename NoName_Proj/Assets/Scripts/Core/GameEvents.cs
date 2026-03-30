@@ -16,6 +16,10 @@ public static class GameEvents
     public static Action<UpgradeData> OnUpgradeSuccess;
 
     public static Action<UpgradeData> OnUpgradeFailed;
+
+    public static Action OnPlayerDeadStart;
+    
+    public static Action OnPlayerDeadEnd;
     
     public static Action OnPlayerDead;
 

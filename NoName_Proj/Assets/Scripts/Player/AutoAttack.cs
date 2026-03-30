@@ -9,6 +9,20 @@ public class AutoAttack : MonoBehaviour
 
     float timer;
 
+    void OnEnable()
+    {
+        GameEvents.OnPlayerDeadStart += StopAttack;
+    }
+
+    void OnDisable()
+    {
+        GameEvents.OnPlayerDeadStart -= StopAttack;
+    }
+    void StopAttack()
+    {
+        enabled = false; // Update 자체 정지
+    }
+
     void Update()
     {
         if (!detector.HasEnemy())

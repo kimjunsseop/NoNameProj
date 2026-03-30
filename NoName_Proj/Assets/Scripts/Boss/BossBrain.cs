@@ -14,6 +14,7 @@ public class BossBrain : MonoBehaviour
     void OnEnable()
     {
         GameEvents.OnPlayerSpawned += SetTarget;
+        GameEvents.OnPlayerDeadStart += OnPlayerDead;
 
         // 테스트용 반드시 지울것
         if (GameEvents.Player != null)
@@ -25,6 +26,7 @@ public class BossBrain : MonoBehaviour
     void OnDisable()
     {
         GameEvents.OnPlayerSpawned -= SetTarget;
+        GameEvents.OnPlayerDeadStart -= OnPlayerDead;
     }
 
     void Start()
@@ -64,6 +66,11 @@ public class BossBrain : MonoBehaviour
         {
             dieState.OnAnimationEnd(this);
         }
+    }
+
+    void OnPlayerDead()
+    {
+        ChangeState(new BossVictoryState());
     }
     
 }
