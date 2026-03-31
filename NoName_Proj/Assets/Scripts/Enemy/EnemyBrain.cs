@@ -26,7 +26,7 @@ public class EnemyBrain : MonoBehaviour
                 UpdateAttack();
                 break;
             case EnemyState.Hit:
-                enemy.StartCoroutine(HitRoutine());
+                //enemy.StartCoroutine(HitRoutine());
                 break;
         }
     }
@@ -44,6 +44,9 @@ public class EnemyBrain : MonoBehaviour
 
             case EnemyState.Attack:
                 enemy.movement.Stop();
+                break;
+            case EnemyState.Hit:
+                enemy.StartCoroutine(HitRoutine());
                 break;
         }
     }

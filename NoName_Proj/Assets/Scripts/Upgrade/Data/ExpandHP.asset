@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
   upgradeName: ExpandHP
   description: maxHP + 10
-  icon: {fileID: 21300000, guid: bd5a4b1b12bb5f042941c05fb9b9f26a, type: 3}
+  icon: {fileID: 5908797824531071540, guid: 95ef6e5047fd3324996b7dbc4d8acbae, type: 3}
   costExp: 3
   effect: {fileID: 11400000, guid: 08dc811085b907c4898c0fb9d806ff0a, type: 2}

@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPoolable
 
     public Transform target;
 
-    public event Action<Enemy> OnDeath; // 매니저가 구독할거. list관리할때 지우려고
+    public Action<Enemy> OnDeath; // 매니저가 구독할거. list관리할때 지우려고
     public event Action OnCriticalHit;
     private EnemyManager manager;
     private HitFlashController hitFlash;
@@ -115,7 +115,10 @@ public class Enemy : MonoBehaviour, IDamageable, IPoolable
         if (info.isCritical)
         {
             OnCriticalHit?.Invoke();
-            ChangeState(EnemyState.Hit);
+            if (!(attack is SuicideAttack))
+            {
+                ChangeState(EnemyState.Hit);
+            }
         }
     }
     void Die()

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
   upgradeName: GunSpeedUpgrade
   description: GunspeedUp
-  icon: {fileID: 21300000, guid: 97e76dfa5ae0564439b0862a5b6057ac, type: 3}
+  icon: {fileID: 5978732359254556080, guid: c4b4bc492ad6e45469e60ed5fb1b38b1, type: 3}
   costExp: 2
   effect: {fileID: 11400000, guid: b099949988a1f214f93b217f54720ef5, type: 2}

@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbec805b88137154da617223026fdb85, type: 3}
-  m_Name: 1stage
-  m_EditorClassIdentifier: Assembly-CSharp::StageData
-  stageIndex: 1
-  killTarget: 10
-  maxEnemyCount: 50
+  m_Script: {fileID: 11500000, guid: 551c0746dce5c814d9a206aef55c537a, type: 3}
+  m_Name: EnemyD
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  maxHp: 10
+  attackPower: 15
+  chaseRange: 30
+  attackRange: 2
+  moveSpeed: 6
+  expDrop: 2
+  spawnWeight: 10

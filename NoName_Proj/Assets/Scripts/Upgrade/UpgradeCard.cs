@@ -8,6 +8,7 @@ public class UpgradeCard : MonoBehaviour
     public Image icon;
     public TextMeshProUGUI title;
     public TextMeshProUGUI description;
+    public TextMeshProUGUI cost;
 
     [Header("Visual")]
     public Animator animator; // unscale 모드로 해서 timeScale 0 이여도 재생
@@ -26,6 +27,7 @@ public class UpgradeCard : MonoBehaviour
         icon.sprite = upgrade.icon;
         title.text = upgrade.upgradeName;
         description.text = upgrade.description;
+        cost.text = $"cost Exp : {upgrade.costExp}";
     }
 
     void OnEnable()
