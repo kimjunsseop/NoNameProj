@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 3stage
   m_EditorClassIdentifier: Assembly-CSharp::StageData
   stageIndex: 3
-  killTarget: 1
-  maxEnemyCount: 30
+  killTarget: 20
+  maxEnemyCount: 50
