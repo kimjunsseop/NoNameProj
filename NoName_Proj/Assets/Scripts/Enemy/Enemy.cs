@@ -101,6 +101,8 @@ public class Enemy : MonoBehaviour, IDamageable, IPoolable
         if (state == EnemyState.Dead) return;
 
         currentHp -= info.damage;
+
+        currentHp = Mathf.Max(currentHp, 0f);
         // hitFlash 발동
         hitFlash.HitFlash();
 
