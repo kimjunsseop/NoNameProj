@@ -20,6 +20,8 @@ public class EnemyManager : MonoBehaviour
 
     private float spawnTimer;
 
+    private List<EnemySpawner> candidates = new List<EnemySpawner>();
+
     void Awake()
     {
         Instance = this;
@@ -92,7 +94,7 @@ public class EnemyManager : MonoBehaviour
     // 특정 거리 내에 있는 spawner만 고려하자.
     EnemySpawner FindValidSpawner()
     {
-        List<EnemySpawner> candidates = new List<EnemySpawner>();
+        candidates.Clear();
 
         foreach (var spawner in spawners)
         {
@@ -161,17 +163,17 @@ public class EnemyManager : MonoBehaviour
         GameEvents.OnEnemyKilled?.Invoke();
     }
 
-    void OnDrawGizmosSelected()
-    {
-        if (player == null)
-            return;
+    // void OnDrawGizmosSelected()
+    // {
+    //     if (player == null)
+    //         return;
 
-        // 최소 거리 원 (빨간색)
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(player.position, minSpawnDistance);
+    //     // 최소 거리 원 (빨간색)
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawWireSphere(player.position, minSpawnDistance);
 
-        // 최대 거리 원 (초록색)
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(player.position, maxSpawnDistance);
-    }
+    //     // 최대 거리 원 (초록색)
+    //     Gizmos.color = Color.green;
+    //     Gizmos.DrawWireSphere(player.position, maxSpawnDistance);
+    // }
 }

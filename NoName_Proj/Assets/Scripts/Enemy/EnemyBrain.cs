@@ -5,6 +5,8 @@ public class EnemyBrain : MonoBehaviour
 {
     private Enemy enemy;
 
+    private static readonly WaitForSeconds hitDelay = new WaitForSeconds(1f);
+
     public void Initialize(Enemy enemy)
     {
         this.enemy = enemy;
@@ -103,7 +105,7 @@ public class EnemyBrain : MonoBehaviour
         enemy.movement.Stop();
         enemy.animator.Play("Hit");
 
-        yield return new WaitForSeconds(1f);
+        yield return hitDelay;
 
         if (enemy.state != EnemyState.Dead)
             enemy.ChangeState(EnemyState.Chase);

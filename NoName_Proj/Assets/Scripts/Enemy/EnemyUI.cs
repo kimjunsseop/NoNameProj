@@ -12,9 +12,13 @@ public class EnemyUI : MonoBehaviour
 
     float timer;
 
+    private Camera cam;
+
     void Awake()
     {
         enemy = GetComponent<Enemy>();
+
+        cam = Camera.main; // 카메라 캐싱
 
         if (canvas != null)
             canvas.enabled = false;
@@ -35,7 +39,7 @@ public class EnemyUI : MonoBehaviour
         if (!canvas.enabled) return;
         if (Camera.main == null) return;
 
-        canvas.transform.forward = Camera.main.transform.forward;
+        canvas.transform.forward = cam.transform.forward;
     }
 
     public void Show()

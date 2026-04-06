@@ -49,10 +49,17 @@ public class DamageText : MonoBehaviour
     public Canvas canvas;
     public Animator animator;
 
+    private Camera cam;
+
+    void Awake()
+    {
+        cam = Camera.main; // 카메라 캐싱
+    }
+
     public void Show(int damage, Vector3 worldPos, bool isCritical)
     {
         transform.position = worldPos;
-        text.text = damage.ToString();
+        text.SetText("{0}", damage);
 
         if (isCritical)
         {
@@ -68,7 +75,7 @@ public class DamageText : MonoBehaviour
     {
         if (Camera.main == null) return;
 
-        canvas.transform.forward = Camera.main.transform.forward;
+        canvas.transform.forward = cam.transform.forward;
     }
 
     // 🔥 애니메이션 끝날 때 호출됨
